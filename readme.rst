@@ -1,4 +1,10 @@
 ###################
+PENTING!
+###################
+
+Kalau ada perubahan di database jangan lupa diekspor terus dipush lagi di github. thankyouu!
+
+###################
 What is CodeIgniter
 ###################
 
