@@ -8,7 +8,7 @@ class Siswa extends CI_Controller {
         parent::__construct();
         $this->load->model('M_siswa');
         $this->load->library('session');
-        
+        $this->load->library('form_validation');
     }
 
     public function index()
@@ -27,27 +27,41 @@ class Siswa extends CI_Controller {
     public function edit($nisn)
     {
         $data['siswa'] = $this->M_siswa->get_siswa_by_nisn($nisn);
+        $data['kelas'] = $this->M_siswa->get_kelas();
+        
         if ($data['siswa']) {
-            $this->load->view('siswa/edit', $data);
+            $this->load->view('siswa/V_edit_siswa', $data);
         } else {
             show_404();
         }
     }
+    
 
     public function update($nisn)
     {
-        $data = [
-            'nama' => $this->input->post('nama'),
-            'angkatan' => $this->input->post('angkatan'),
-            'kelas_id' => $this->input->post('kelas_id')
-        ];
-
-        if ($this->M_siswa->update_siswa($nisn, $data)) {
-            redirect('siswa');
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('angkatan', 'Angkatan', 'required');
+        $this->form_validation->set_rules('kelas_id', 'Kelas', 'required');
+    
+        if ($this->form_validation->run() == FALSE) {
+            $this->edit($nisn);
         } else {
-            show_error('Data gagal diperbarui.');
+            $data = [
+                'nama' => $this->input->post('nama'),
+                'angkatan' => $this->input->post('angkatan'),
+                'kelas_id' => $this->input->post('kelas_id'),
+            ];
+    
+            if ($this->M_siswa->update_siswa($nisn, $data)) {
+                $this->session->set_flashdata('success', 'Data siswa berhasil diperbarui.');
+                redirect('siswa');
+            } else {
+                $this->session->set_flashdata('error', 'Data siswa gagal diperbarui.');
+                redirect('siswa/edit/' . $nisn);
+            }
         }
-    }
+    }    
+
 
     public function hapus($nisn)
     {
@@ -77,8 +91,8 @@ class Siswa extends CI_Controller {
     public function tambah()
     {
         // Ambil data jurusan dan kelas
-        $data['jurusan'] = $this->M_siswa->get_jurusan();  // Ambil data jurusan dari model
-        $data['kelas'] = $this->M_siswa->get_kelas();      // Ambil data kelas dari model
+        $data['jurusan'] = $this->M_siswa->get_jurusan();  
+        $data['kelas'] = $this->M_siswa->get_kelas();      
     
         // Muat view tambah siswa
         $this->load->view('siswa/V_tambah_siswa', $data);
