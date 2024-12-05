@@ -2,7 +2,9 @@
 PENTING!
 ###################
 
-Kalau ada perubahan di database jangan lupa diekspor terus dipush lagi di github. thankyouu!
+DATABASE JANGAN LUPA DIIMPORT KE MYSQL BIAR CODENYA BISA JALAN. KALAU ADA PERUBAHAN DI DATABASE JANGAN LUPA DIEKSPOR TERUS DIPUSH LAGI DI GITHUB. THANKYOUU!
+
+
 
 ###################
 What is CodeIgniter
