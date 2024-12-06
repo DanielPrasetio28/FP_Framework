@@ -251,24 +251,24 @@
             <div>
                 <h2 class="h2-headerPendidikan">PENDIDIKAN</h2>
 
-                <h2 class="h2-contentPendidikan"><?=$school_sd ??''?></h2>
-                <p class="tanggalPendidikan"><?=$year_sd ??''?></p>
+                <h2 class="h2-contentPendidikan"><?=$school_sd ??"?></h2>
+                <p class="tanggalPendidikan"><?=$year_smp?? "?></p>
 
-                <h2 class="h2-contentPendidikan"><?=$school_smp ??''?></h2>
-                <p class="tanggalPendidikan"><?=$year_smp?? ''?></p>
+                <h2 class="h2-contentPendidikan"><?=$school_smp ??"?></h2>
+                <p class="tanggalPendidikan"><?=$year_smp?? "?></p>
 
-                <h2 class="h2-contentPendidikan"><?=$school_sma ??''?></h2>
-                <p class="tanggalPendidikan"><?=$year_sma ??''?></p>
+                <h2 class="h2-contentPendidikan"><?=$school_sma ??"?></h2>
+                <p class="tanggalPendidikan"><?=$year_sma ??"?></p>
 
-                <h2 class="h2-contentPendidikan"><?=$school_univ ??''?></h2>
-                <p class="tanggalPendidikan"><?=$year_univ ??''?></p>
+                <h2 class="h2-contentPendidikan"><?=$school_univ ??"?></h2>
+                <p class="tanggalPendidikan"><?=$year_univ ??"?></p>
             </div>
             <div>
                 <h2 class="h2-headerPengalaman">PENGALAMAN</h2>
 
-                <h2 class="h2-contentPendidikan"><?=$company ??''?></h2>
-                <p class="tanggalPendidikan"><?=$year_company ??''?></p>
-                <p class="keteranganPengalaman"><?=$position ??''?></p>
+                <h2 class="h2-contentPendidikan"><?=$company ??"?></h2>
+                <p class="tanggalPendidikan"><?=$year_company ??"?></p>
+                <p class="keteranganPengalaman"><?=$position ??"?></p>
             </div>
         </div>
     </section>
