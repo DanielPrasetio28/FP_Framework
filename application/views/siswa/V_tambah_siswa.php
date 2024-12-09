@@ -60,7 +60,7 @@
                             </select>
                         </div>
                     <?php else: ?>
-                        <p>Data kelas tidak ditemukan.</p>
+                        <p>Data kelas tidak ditemukan. </p>
                     <?php endif; ?>
 
                     <button type="submit" class="bg-blue-500 text-white p-3 rounded-md inline-block transform transition-transform duration-300 hover:scale-110 hover:bg-gradient-to-r from-blue-500 to-indigo-500">Simpan Siswa</button>
