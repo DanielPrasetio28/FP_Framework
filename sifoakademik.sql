@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2024 at 03:02 PM
+-- Generation Time: Dec 10, 2024 at 08:23 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- Database: `sifoakademik`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -52,6 +64,29 @@ INSERT INTO `kelas` (`id`, `nama_kelas`, `jurusan`, `tingkat`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kepsek`
+--
+
+CREATE TABLE `kepsek` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login_siswa`
+--
+
+CREATE TABLE `login_siswa` (
+  `nisn` varchar(20) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `siswa`
 --
 
@@ -72,15 +107,57 @@ INSERT INTO `siswa` (`nisn`, `nama`, `angkatan`, `kelas_id`) VALUES
 ('12345671', 'Gabriel Prasetio Budiman', '2024', 20),
 ('1234567122', 'Eddy Budiman', '2022', 19);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` enum('siswa','admin','kepsek') NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `role`, `created_at`, `updated_at`) VALUES
+(7, 'Eddy', '123456', 'admin', '2024-12-10 19:18:33', '2024-12-10 19:18:33');
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `kelas`
 --
 ALTER TABLE `kelas`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kepsek`
+--
+ALTER TABLE `kepsek`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indexes for table `login_siswa`
+--
+ALTER TABLE `login_siswa`
+  ADD PRIMARY KEY (`nisn`);
 
 --
 -- Indexes for table `siswa`
@@ -91,8 +168,21 @@ ALTER TABLE `siswa`
   ADD KEY `kelas_id` (`kelas_id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `kelas`
@@ -101,8 +191,26 @@ ALTER TABLE `kelas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
+-- AUTO_INCREMENT for table `kepsek`
+--
+ALTER TABLE `kepsek`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `login_siswa`
+--
+ALTER TABLE `login_siswa`
+  ADD CONSTRAINT `fk_login_siswa_nisn` FOREIGN KEY (`nisn`) REFERENCES `siswa` (`nisn`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `siswa`
