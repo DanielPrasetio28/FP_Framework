@@ -31,12 +31,10 @@ class M_loginregister extends CI_Model {
         $this->db->insert('login_siswa', $login_data);
     }
 
-    // Login Admin
     public function login_admin($username, $password)
     {
         $this->db->where('username', $username);
-        $this->db->where('role', 'admin');
-        $query = $this->db->get('users');
+        $query = $this->db->get('admin');
         $login_data = $query->row();
     
         // Verifikasi password (tanpa password_hash)
@@ -47,14 +45,16 @@ class M_loginregister extends CI_Model {
         return null;
     }
 
-    // Register Admin
-    public function register_admin($data)
-    {
-        // Menambahkan role admin
-        $data['role'] = 'admin';
-    
-        // Masukkan data admin ke dalam tabel users
-        $this->db->insert('users', $data);
+    public function register_admin($data) {
+        // Menambahkan data admin ke tabel admin
+        $this->db->insert('admin', $data);
+        return $this->db->insert_id(); // Mengembalikan ID yang baru dimasukkan
+    }
+
+    public function get_admin_by_id($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get('admin');
+        return $query->row(); // Mengembalikan data admin
     }
 
     // Login Kepsek

@@ -75,7 +75,6 @@ class LoginRegister extends CI_Controller {
     }
     
 
-    // Login Admin
     public function login_admin()
     {
         if ($this->input->post()) {
@@ -88,7 +87,6 @@ class LoginRegister extends CI_Controller {
             if ($login_data) {
                 // Jika login berhasil, set session dan redirect
                 $this->session->set_userdata('username', $login_data->username);
-                $this->session->set_userdata('role', $login_data->role);  // Simpan role
                 redirect('dashboard');  // Redirect ke dashboard admin
             } else {
                 // Jika login gagal, beri pesan error
@@ -102,23 +100,36 @@ class LoginRegister extends CI_Controller {
     }
 
 
-    // Register Admin
     public function register_admin()
     {
-        if($this->input->post()) {
-            $data = array(
+        // Cek apakah form sudah disubmit
+        if ($this->input->post()) {
+            // Mengambil data kelas dan jurusan (bisa disesuaikan jika perlu)
+            // $data['jurusan'] = $this->M_admin->get_jurusan();  // Jika membutuhkan data jurusan, sesuaikan di model
+    
+            // Menyusun data untuk registrasi admin
+            $register_data = array(
                 'username' => $this->input->post('username'),
                 'password' => $this->input->post('password'),
-                'role' => 'admin'
+                'nama' => $this->input->post('nama'),
+                'jabatan' => $this->input->post('jabatan'),
+                'telepon' => $this->input->post('telepon')
             );
-
-            $this->M_loginregister->register_admin($data);
+    
+            // Menyimpan data admin ke database
+            $this->M_loginregister->register_admin($register_data);
+    
+            // Memberikan pesan sukses
             $this->session->set_flashdata('success', 'Registrasi Admin Berhasil');
+    
+            // Mengalihkan pengguna ke halaman login admin
             redirect('loginregister/login_admin');
         }
-
+    
+        // Jika form belum disubmit, load view registrasi admin
         $this->load->view('register/V_register_admin');
-    }
+    }    
+    
 
     // Login Kepsek
     public function login_kepsek()

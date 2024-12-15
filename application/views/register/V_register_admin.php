@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Admin</title>
+    <title>Register Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-blue-50 font-sans">
 
-    <!-- Main Container -->
     <div class="flex justify-center items-center h-screen">
-
-        <!-- Register Box -->
         <div class="bg-white shadow-lg rounded-lg p-8 max-w-sm w-full space-y-6">
             <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Daftar Admin</h2>
             <form action="<?= site_url('loginregister/register_admin'); ?>" method="POST">
@@ -19,6 +16,18 @@
                     <div>
                         <label for="username" class="block text-sm font-medium text-gray-700 mb-2">Username</label>
                         <input type="text" id="username" name="username" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan Username" required>
+                    </div>
+                    <div>
+                        <label for="nama" class="block text-sm font-medium text-gray-700 mb-2">Nama</label>
+                        <input type="text" id="nama" name="nama" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan Nama" required>
+                    </div>
+                    <div>
+                        <label for="jabatan" class="block text-sm font-medium text-gray-700 mb-2">Jabatan</label>
+                        <input type="text" id="jabatan" name="jabatan" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan Jabatan" required>
+                    </div>
+                    <div>
+                        <label for="telepon" class="block text-sm font-medium text-gray-700 mb-2">Nomor Telepon</label>
+                        <input type="text" id="telepon" name="telepon" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Masukkan Nomor Telepon" required>
                     </div>
                     <div>
                         <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>

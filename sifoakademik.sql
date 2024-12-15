@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 10, 2024 at 08:23 PM
+-- Generation Time: Dec 15, 2024 at 03:49 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -30,7 +30,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `jabatan` varchar(100) NOT NULL,
+  `telepon` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -94,18 +97,19 @@ CREATE TABLE `siswa` (
   `nisn` varchar(20) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `angkatan` year(4) NOT NULL,
-  `kelas_id` int(11) NOT NULL
+  `kelas_id` int(11) NOT NULL,
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`nisn`, `nama`, `angkatan`, `kelas_id`) VALUES
-('1122334456', 'Daniel Prasetio Budiman Raynegha', '2024', 20),
-('1122334459', 'Vazcha Tezza Lonica Raynegha', '2022', 9),
-('12345671', 'Gabriel Prasetio Budiman', '2024', 20),
-('1234567122', 'Eddy Budiman', '2022', 19);
+INSERT INTO `siswa` (`nisn`, `nama`, `angkatan`, `kelas_id`, `password`) VALUES
+('1122334456', 'Daniel Prasetio Budiman', '2024', 20, '123456'),
+('1122334459', 'Vazcha Tezza Lonica Raynegha', '2022', 9, ''),
+('12345671', 'Gabriel Prasetio Budiman', '2024', 20, ''),
+('1234567122', 'Eddy Budiman', '2022', 19, '');
 
 -- --------------------------------------------------------
 
@@ -200,7 +204,7 @@ ALTER TABLE `kepsek`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables

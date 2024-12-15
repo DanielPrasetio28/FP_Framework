@@ -23,7 +23,7 @@
                 </div>
                 <!-- Login as Admin -->
                 <div>
-                    <a href="<?= site_url('loginregister/login_admin'); ?>" class="block w-full text-center p-10 rounded-lg text-white font-semibold bg-gradient-to-r from-green-500 to-teal-600 shadow-md transform transition-transform duration-300 hover:scale-105 cursor-pointer">
+                    <a href="<?= site_url('loginregister/login_admin'); ?>" class="block w-full text-center p-10 rounded-lg text-white font-semibold bg-gradient-to-r from-teal-600 to-green-500 shadow-md transform transition-transform duration-300 hover:scale-105 cursor-pointer">
                         Login Admin
                     </a>
                 </div>
