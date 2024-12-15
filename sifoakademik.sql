@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2024 at 03:49 PM
+-- Generation Time: Dec 15, 2024 at 04:50 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -35,6 +35,13 @@ CREATE TABLE `admin` (
   `jabatan` varchar(100) NOT NULL,
   `telepon` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `password`, `nama`, `jabatan`, `telepon`) VALUES
+(4, 'cicicantiik', '200403', 'Vazcha Tezza Lonica Raynegha', 'Guru Ekonomi', '082232351664');
 
 -- --------------------------------------------------------
 
@@ -107,6 +114,7 @@ CREATE TABLE `siswa` (
 
 INSERT INTO `siswa` (`nisn`, `nama`, `angkatan`, `kelas_id`, `password`) VALUES
 ('1122334456', 'Daniel Prasetio Budiman', '2024', 20, '123456'),
+('1122334458', 'Marvel', '2021', 1, ''),
 ('1122334459', 'Vazcha Tezza Lonica Raynegha', '2022', 9, ''),
 ('12345671', 'Gabriel Prasetio Budiman', '2024', 20, ''),
 ('1234567122', 'Eddy Budiman', '2022', 19, '');
@@ -186,7 +194,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `kelas`
