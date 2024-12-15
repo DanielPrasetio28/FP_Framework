@@ -62,6 +62,19 @@ class M_siswa extends CI_Model {
     {
         $this->db->insert('siswa', $data);
     }
+
+    public function find_by_nisn($nisn)
+    {
+        // Cari siswa berdasarkan NISN
+        return $this->db->get_where('siswa', ['nisn' => $nisn])->row();
+    }
+
+    public function update_password($nisn, $password)
+    {
+        // Update password siswa berdasarkan NISN
+        $this->db->where('nisn', $nisn);
+        $this->db->update('siswa', ['password' => $password]);
+    }    
     
     public function get_jurusan()
     {

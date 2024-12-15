@@ -153,6 +153,30 @@ class LoginRegister extends CI_Controller {
         redirect('loginregister/login_siswa');
     }
 
+    public function set_password_siswa()
+    {
+        $this->load->model('M_siswa');
+
+        $nisn = $this->input->post('nisn');
+        $password = $this->input->post('password');
+
+        // Validasi NISN di database
+        $siswa = $this->M_siswa->find_by_nisn($nisn);
+
+        if ($siswa) {
+            // Jika siswa ditemukan, update password tanpa hashing
+            $this->M_siswa->update_password($nisn, $password);
+
+            // Redirect dengan pesan sukses
+            $this->session->set_flashdata('success', 'Password berhasil diatur ulang. Silakan login.');
+            redirect('loginregister/login_siswa');
+        } else {
+            // Jika NISN tidak ditemukan, tampilkan pesan error
+            $this->session->set_flashdata('error', 'NISN tidak ditemukan. Silakan coba lagi.');
+            redirect('loginregister/register_siswa');
+        }
+    }
+
     // Logout Admin
     public function logout_admin()
     {
