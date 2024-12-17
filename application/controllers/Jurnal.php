@@ -31,7 +31,6 @@ class Jurnal extends CI_Controller {
         redirect('jurnal');
     }
 
-
     public function detail($kelas_id)
     {
         // Mengambil siswa berdasarkan kelas_id

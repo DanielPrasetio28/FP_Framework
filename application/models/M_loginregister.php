@@ -6,7 +6,7 @@ class M_loginregister extends CI_Model {
     public function login_siswa($nisn, $password)
     {
         $this->db->where('nisn', $nisn);
-        $query = $this->db->get('login_siswa');
+        $query = $this->db->get('siswa');
         $login_data = $query->row();
         
         // Verifikasi password (tanpa password_hash)

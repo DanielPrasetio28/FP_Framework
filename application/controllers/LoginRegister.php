@@ -28,7 +28,7 @@ class LoginRegister extends CI_Controller {
             if ($login_data) {
                 // Jika login berhasil, set session atau lakukan hal lainnya
                 $this->session->set_userdata('nisn', $login_data->nisn);
-                redirect('dashboard/V_dashboard_siswa');
+                redirect('dashboard/dashboard_siswa');
             } else {
                 // Jika login gagal, beri pesan error
                 $this->session->set_flashdata('error', 'NISN atau Password Salah');

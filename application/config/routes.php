@@ -59,3 +59,6 @@ $route['pembayaran'] = 'pembayaran/index';
 $route['absensi'] = 'absensi/index';
 $route['siswa'] = 'siswa/index';
 $route['jurnal/tambah_kelas'] = 'jurnal/tambah_kelas';
+$route['pembayaran/detail(:any)'] = 'pembayaran/detail/$1';
+$route['pembayaran/acc_pembayaran/(:num)'] = 'pembayaran/acc_pembayaran/$1';
+$route['pembayaran/tolak_pembayaran/(:num)'] = 'pembayaran/tolak_pembayaran/$1';

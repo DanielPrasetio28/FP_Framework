@@ -23,4 +23,9 @@ class Dashboard extends CI_Controller {
         // Load view dengan data jumlah siswa dan jumlah kelas
         $this->load->view('dashboard/V_dashboard', $data);
     }
+
+    public function dashboard_siswa()
+    {
+        $this->load->view('dashboard/V_dashboard_siswa', $data);
+    }
 }
