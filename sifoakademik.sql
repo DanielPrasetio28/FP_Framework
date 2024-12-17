@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2024 at 04:50 PM
+-- Generation Time: Dec 17, 2024 at 08:55 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -41,7 +41,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`, `nama`, `jabatan`, `telepon`) VALUES
-(4, 'cicicantiik', '200403', 'Vazcha Tezza Lonica Raynegha', 'Guru Ekonomi', '082232351664');
+(4, 'cicicantiik', '200403', 'Vazcha Tezza Lonica Raynegha', 'Guru Ekonomi', '082232351664'),
+(5, 'adlein82', 'pinang03', 'Daniel Prasetio Budiman', 'Guru Informatika', '082119278213');
 
 -- --------------------------------------------------------
 
@@ -62,9 +63,7 @@ CREATE TABLE `kelas` (
 
 INSERT INTO `kelas` (`id`, `nama_kelas`, `jurusan`, `tingkat`) VALUES
 (1, '1', 'MIPA', 'X'),
-(5, '1', 'IPS', 'XII'),
 (7, '4', 'MIPA', 'X'),
-(8, '2', 'IPS', 'XI'),
 (9, '3', 'MIPA', 'X'),
 (10, '3', 'IPS', 'X'),
 (11, '1', 'IPS', 'XII'),
@@ -86,12 +85,15 @@ CREATE TABLE `kepsek` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login_siswa`
+-- Table structure for table `pembayaran`
 --
 
-CREATE TABLE `login_siswa` (
-  `nisn` varchar(20) NOT NULL,
-  `password` varchar(255) NOT NULL
+CREATE TABLE `pembayaran` (
+  `id` int(11) NOT NULL,
+  `siswa_nisn` varchar(20) NOT NULL,
+  `bukti_transfer` varchar(255) NOT NULL,
+  `status` enum('pending','approved','rejected') DEFAULT 'pending',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -166,10 +168,11 @@ ALTER TABLE `kepsek`
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indexes for table `login_siswa`
+-- Indexes for table `pembayaran`
 --
-ALTER TABLE `login_siswa`
-  ADD PRIMARY KEY (`nisn`);
+ALTER TABLE `pembayaran`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `siswa_nisn` (`siswa_nisn`);
 
 --
 -- Indexes for table `siswa`
@@ -194,7 +197,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `kelas`
@@ -209,6 +212,12 @@ ALTER TABLE `kepsek`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -219,10 +228,10 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `login_siswa`
+-- Constraints for table `pembayaran`
 --
-ALTER TABLE `login_siswa`
-  ADD CONSTRAINT `fk_login_siswa_nisn` FOREIGN KEY (`nisn`) REFERENCES `siswa` (`nisn`) ON DELETE CASCADE;
+ALTER TABLE `pembayaran`
+  ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`siswa_nisn`) REFERENCES `siswa` (`nisn`);
 
 --
 -- Constraints for table `siswa`
