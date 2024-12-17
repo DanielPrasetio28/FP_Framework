@@ -42,4 +42,17 @@ class Jurnal extends CI_Controller {
         $this->load->view('jurnal/V_kelas', $data);
     }
 
+    public function hapus($id)
+    {
+        // Panggil fungsi hapus_kelas di model dan cek apakah berhasil
+        if ($this->M_jurnal->hapus_kelas($id)) {
+            $this->session->set_flashdata('success', 'Kelas berhasil dihapus.');
+        } else {
+            $this->session->set_flashdata('error', 'Kelas gagal dihapus.');
+        }
+
+        // Redirect kembali ke halaman jurnal
+        redirect('jurnal');
+    }
+
 }

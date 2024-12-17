@@ -44,6 +44,11 @@ class M_jurnal extends CI_Model {
     {
         return $this->db->count_all('kelas');  
     }
+
+    public function hapus_kelas($id)
+    {
+        return $this->db->delete('kelas', ['id' => $id]);
+    }
 }
 
 

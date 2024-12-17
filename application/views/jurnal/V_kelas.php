@@ -28,9 +28,14 @@
             <h1 class="text-3xl font-bold text-gray-800 mb-4">
                 Detail Kelas: <?= $kelas->tingkat . '-' . $kelas->jurusan . '-' . $kelas->nama_kelas; ?>
             </h1>
-            <p class="text-2xl font-bold text-gray-800 mb-4">
-                Daftar Siswa
-            </p>
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-3xl font-bold text-gray-800">Daftar Siswa</h1>
+                <a href="<?= site_url('jurnal/hapus/' . $kelas->id); ?>" 
+                class="bg-red-500 font-bold text-white p-3 rounded-md inline-block transform transition-transform duration-300 hover:scale-110 hover:bg-gradient-to-r from-red-500 to-pink-600"
+                onclick="return confirm('Apakah Anda yakin ingin menghapus kelas ini?');">
+                    <i class="fas fa-trash mr-2"></i>Hapus Kelas
+                </a>
+            </div>
 
             <div class="bg-white shadow-md rounded-lg overflow-x-auto">
                 <table class="min-w-full table-auto border-collapse">
