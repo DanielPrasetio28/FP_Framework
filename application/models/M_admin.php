@@ -50,4 +50,9 @@ class M_admin extends CI_Model {
     {
         $this->db->insert('admin', $data);
     }
+
+    public function get_jumlah_admin()
+    {
+        return $this->db->count_all('admin');  
+    }
 }

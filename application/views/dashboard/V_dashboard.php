@@ -47,7 +47,7 @@
                     <div class="text-xl font-semibold flex items-center justify-center mt-5">
                         <i class="fas fa-user-tie mr-3"></i>Pengajar Aktif
                     </div>
-                    <div class="text-3xl font-bold mt-2 mb-5">5</div>
+                    <div class="text-3xl font-bold mt-2 mb-5"><?= $jumlah_admin; ?></div>
                 </div>
             </div>
 
