@@ -15,6 +15,7 @@ class M_pembayaran extends CI_Model {
         $this->db->where('pembayaran.siswa_nisn', $nisn);
         return $this->db->get()->result();
     }
+    
 
     public function update_pembayaran($id, $data) {
         $this->db->where('id', $id);

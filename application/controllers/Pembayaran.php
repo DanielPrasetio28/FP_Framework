@@ -17,7 +17,13 @@ class Pembayaran extends CI_Controller {
 
     // Halaman siswa untuk upload bukti transfer
     public function upload_bukti() {
-        $this->load->view('pembayaran/V_pembayaran_siswa');
+        // Pastikan nisn siswa ada dalam session
+        if (!$this->session->userdata('nisn')) {
+            redirect('auth/login'); // Jika tidak ada nisn, arahkan ke halaman login
+        }
+
+        $data['pembayaran'] = $this->M_pembayaran->get_pembayaran_by_siswa($this->session->userdata('nisn'));
+        $this->load->view('pembayaran/V_pembayaran_siswa', $data);
     }
 
     // Proses upload bukti transfer

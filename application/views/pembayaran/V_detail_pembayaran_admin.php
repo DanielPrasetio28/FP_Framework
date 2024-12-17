@@ -56,7 +56,7 @@
                                 <td class="py-2 px-4">
                                     <a href="<?= base_url('uploads/bukti_transfer/' . htmlspecialchars($bayar->bukti_transfer)); ?>" 
                                        target="_blank" 
-                                       class="text-blue-500 hover:underline">
+                                       class="text-blue-500 font-bold inline-block transform transition-transform duration-300 hover:scale-110">
                                        Lihat Bukti Transfer
                                     </a>
                                 </td>
