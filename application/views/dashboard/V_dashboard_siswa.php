@@ -28,8 +28,7 @@
             <div>
                 <h1 class="text-3xl font-bold">Selamat Datang, <?= $this->session->userdata('nama'); ?>!</h1>
                 <p class="text-lg">
-                    Jurusan: <?= $this->session->userdata('jurusan'); ?> | 
-                    Kelas: <?= $this->session->userdata('tingkat') . '-' . $this->session->userdata('jurusan') . '-' . $this->session->userdata('nama_kelas'); ?>
+                    NISN : <?= $this->session->userdata('nisn'); ?>
                 </p>
             </div>
             <div>

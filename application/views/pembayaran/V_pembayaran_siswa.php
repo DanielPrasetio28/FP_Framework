@@ -47,7 +47,7 @@
         <form action="<?= site_url('pembayaran/simpan_bukti'); ?>" method="POST" enctype="multipart/form-data">
             <div class="mb-6">
                 <label for="bukti_transfer" class="block font-bold mb-2 text-gray-700">Bukti Transfer</label>
-                <input type="file" name="bukti_transfer" id="bukti_transfer" class="border p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <input type="file" name="bukti_transfer" id="bukti_transfer" class="border-2 border-blue-500 p-2 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
             <button type="submit" class="bg-blue-500 font-bold text-white p-3 rounded-md inline-block transform transition-transform duration-300 hover:scale-110 hover:bg-gradient-to-r from-blue-500 to-indigo-500">
                 Upload
