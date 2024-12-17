@@ -18,27 +18,32 @@ class LoginRegister extends CI_Controller {
     // Login Siswa
     public function login_siswa()
     {
-        if($this->input->post()) {
+        if ($this->input->post()) {
             $nisn = $this->input->post('nisn');
             $password = $this->input->post('password');
             
-            // Cek login data
+            // Ambil data login dari model
             $login_data = $this->M_loginregister->login_siswa($nisn, $password);
     
             if ($login_data) {
-                // Jika login berhasil, set session atau lakukan hal lainnya
-                $this->session->set_userdata('nisn', $login_data->nisn);
+                // Set session dengan data lengkap
+                $this->session->set_userdata([
+                    'nisn' => $login_data->nisn,
+                    'nama' => $login_data->nama,
+                    'nama_kelas' => $login_data->nama_kelas, // nama kelas dari tabel kelas
+                    'jurusan' => $login_data->jurusan,       // jurusan dari tabel kelas
+                    'tingkat' => $login_data->tingkat
+                ]);
                 redirect('dashboard/dashboard_siswa');
             } else {
-                // Jika login gagal, beri pesan error
-                $this->session->set_flashdata('error', 'NISN atau Password Salah');
+                $this->session->set_flashdata('error', 'NISN atau Password salah');
                 redirect('loginregister/login_siswa');
             }
         }
     
-        // Jika form belum disubmit, load view login siswa
         $this->load->view('login/V_login_siswa');
     }
+      
 
     // Register Siswa
     public function register_siswa()

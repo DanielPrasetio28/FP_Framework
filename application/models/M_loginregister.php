@@ -5,8 +5,13 @@ class M_loginregister extends CI_Model {
     // Login Siswa
     public function login_siswa($nisn, $password)
     {
-        $this->db->where('nisn', $nisn);
-        $query = $this->db->get('siswa');
+        // SELECT dengan JOIN untuk mengambil data siswa beserta jurusan dan nama_kelas
+        $this->db->select('siswa.nisn, siswa.nama, siswa.password, kelas.nama_kelas, kelas.jurusan, kelas.tingkat');
+        $this->db->from('siswa');
+        $this->db->join('kelas', 'siswa.kelas_id = kelas.id'); // JOIN tabel kelas
+        $this->db->where('siswa.nisn', $nisn);
+    
+        $query = $this->db->get();
         $login_data = $query->row();
         
         // Verifikasi password (tanpa password_hash)
@@ -16,6 +21,7 @@ class M_loginregister extends CI_Model {
         
         return null;
     }
+    
 
     // Register Siswa
     public function register_siswa($data)
