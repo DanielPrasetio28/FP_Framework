@@ -42,16 +42,16 @@
                     <thead class="bg-gradient-to-r from-blue-500 to-indigo-400 text-white">
                         <tr>
                             <th class="py-3 px-6 text-left">No</th>
-                            <th class="py-3 px-6 text-left">Nama Siswa</th>
                             <th class="py-3 px-6 text-left">NISN</th>
+                            <th class="py-3 px-6 text-left">Nama Siswa</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $no = 1; foreach ($siswa as $s): ?>
                             <tr class="hover:bg-gradient-to-r from-blue-200 to-indigo-200">
                                 <td class="py-2 px-6"><?= $no++; ?></td>
-                                <td class="py-2 px-6"><?= $s->nama; ?></td>
                                 <td class="py-2 px-6"><?= $s->nisn; ?></td>
+                                <td class="py-2 px-6"><?= $s->nama; ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
