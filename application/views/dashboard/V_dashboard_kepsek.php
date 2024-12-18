@@ -24,7 +24,7 @@
 
         <!-- Content Area -->
         <div class="flex-1 p-8 space-y-6 transition-all duration-300" id="content">
-            <div class="">
+            <div>
                 <h1 class="text-3xl font-bold text-gray-800">Dashboard</h1>
             </div>
 
@@ -66,7 +66,49 @@
                     <div class="text-3xl font-bold mt-2 mb-8">80</div>
                 </div>
             </div>
+
+            <h2 class="text-xl font-bold text-gray-800">Riwayat Pembayaran SPP Terakhir</h2>
+
+            <div class="bg-white to-indigo-400 shadow-md rounded-lg overflow-x-auto">
+                <table class="table-auto w-full border-collapse">
+                    <thead class="bg-gradient-to-r from-blue-500 to-indigo-400 text-white">
+                        <tr>
+                            <th class="p-4 border-b text-left">No</th>
+                            <th class="p-4 border-b text-left">Nama Siswa</th>
+                            <th class="p-4 border-b text-left">Bukti Transfer</th>
+                            <th class="p-4 border-b text-left">Status</th>
+                            <th class="p-4 border-b text-left">Tanggal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (!empty($riwayat_pembayaran)) : ?>
+                            <?php foreach ($riwayat_pembayaran as $key => $pembayaran) : ?>
+                                <tr class="hover:bg-gradient-to-r from-blue-200 to-indigo-200">
+                                    <td class="py-2 px-4"><?= $key + 1; ?></td>
+                                    <td class="py-2 px-4"><?= $pembayaran->nama; ?></td>
+                                    <td class="py-2 px-4">
+                                        <?php if ($pembayaran->bukti_transfer) : ?>
+                                            <a href="<?= base_url('uploads/bukti_transfer/' . $pembayaran->bukti_transfer); ?>" target="_blank" class="text-blue-500 hover:underline">Lihat Bukti</a>
+                                        <?php else : ?>
+                                            Tidak Ada
+                                        <?php endif; ?>
+                                    </td>
+                                    <td class="py-2 px-4"><?= ucfirst($pembayaran->status); ?></td>
+                                    <td class="py-2 px-4"><?= date('d M Y, H:i', strtotime($pembayaran->created_at)); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else : ?>
+                            <tr>
+                                <td colspan="5" class="py-3 px-4 text-center text-gray-500">Tidak ada riwayat pembayaran.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+
+
         </div>
     </div>
+
 </body>
 </html>

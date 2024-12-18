@@ -27,7 +27,7 @@
                 <h1 class="text-3xl font-bold text-gray-800">Edit Guru</h1>
             </div>
 
-            <form action="<?= site_url('admin/update/' . $admin->id); ?>" method="POST">
+            <form action="<?= site_url('admin/update_kepsek/' . $admin->id); ?>" method="POST">
                 <div class="space-y-4">
                     <div>
                         <label for="nama" class="block text-gray-800 font-bold">Nama</label>

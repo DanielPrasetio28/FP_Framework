@@ -10,6 +10,7 @@ class Dashboard extends CI_Controller {
         $this->load->model('M_siswa');
         $this->load->model('M_jurnal'); 
         $this->load->model('M_admin'); 
+        $this->load->model('M_pembayaran'); 
 
         // Load session library jika belum diload
         $this->load->library('session');
@@ -74,7 +75,7 @@ class Dashboard extends CI_Controller {
         $data['jumlah_admin'] = $this->M_admin->get_jumlah_admin();
         $data['jumlah_siswa'] = $this->M_siswa->get_jumlah_siswa();
         $data['jumlah_kelas'] = $this->M_jurnal->get_jumlah_kelas();
-        
+        $data['riwayat_pembayaran'] = $this->M_pembayaran->get_riwayat_pembayaran(10);
         $this->load->view('dashboard/V_dashboard_kepsek', $data);
     }
     

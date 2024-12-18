@@ -27,7 +27,7 @@
                 <h1 class="text-3xl font-bold text-gray-800">Edit Siswa</h1>
             </div>
 
-            <form action="<?= site_url('siswa/update/' . $siswa->nisn); ?>" method="POST">
+            <form action="<?= site_url('siswa/update_kepsek/' . $siswa->nisn); ?>" method="POST">
                 <div class="space-y-4">
                     <div>
                         <label for="nisn" class="block text-gray-800 font-bold">NISN</label>

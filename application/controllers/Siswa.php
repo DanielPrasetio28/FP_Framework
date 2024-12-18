@@ -86,6 +86,30 @@ class Siswa extends CI_Controller {
         }
     }    
 
+    public function update_kepsek($nisn)
+    {
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('angkatan', 'Angkatan', 'required');
+        $this->form_validation->set_rules('kelas_id', 'Kelas', 'required');
+    
+        if ($this->form_validation->run() == FALSE) {
+            $this->edit($nisn);
+        } else {
+            $data = [
+                'nama' => $this->input->post('nama'),
+                'angkatan' => $this->input->post('angkatan'),
+                'kelas_id' => $this->input->post('kelas_id'),
+            ];
+    
+            if ($this->M_siswa->update_siswa($nisn, $data)) {
+                $this->session->set_flashdata('success', 'Data siswa berhasil diperbarui.');
+                redirect('siswa/siswa_kepsek');
+            } else {
+                $this->session->set_flashdata('error', 'Data siswa gagal diperbarui.');
+                redirect('siswa/edit_kepsek/' . $nisn);
+            }
+        }
+    }    
 
     public function hapus($nisn)
     {
@@ -145,6 +169,21 @@ class Siswa extends CI_Controller {
         // Simpan data siswa ke database
         $this->M_siswa->simpan_siswa($data);
         redirect('siswa');
+    }
+
+    public function simpan_kepsek()
+    {
+        // Ambil data dari form
+        $data = array(
+            'nisn' => $this->input->post('nisn'),
+            'nama' => $this->input->post('nama'),
+            'angkatan' => $this->input->post('angkatan'),
+            'kelas_id' => $this->input->post('kelas'),  // ID kelas dipilih di dropdown
+        );
+    
+        // Simpan data siswa ke database
+        $this->M_siswa->simpan_siswa($data);
+        redirect('siswa/siswa_kepsek');
     }
     
 

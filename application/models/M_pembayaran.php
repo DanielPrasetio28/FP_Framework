@@ -16,6 +16,15 @@ class M_pembayaran extends CI_Model {
         return $this->db->get()->result();
     }
     
+    public function get_riwayat_pembayaran($limit = 10) {
+        return $this->db->select('p.id, s.nama, p.bukti_transfer, p.status, p.created_at')
+                        ->from('pembayaran p')
+                        ->join('siswa s', 'p.siswa_nisn = s.nisn')
+                        ->order_by('p.created_at', 'DESC')
+                        ->limit($limit)
+                        ->get()
+                        ->result();
+    }    
 
     public function update_pembayaran($id, $data) {
         $this->db->where('id', $id);

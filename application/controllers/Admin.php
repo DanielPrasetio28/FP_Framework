@@ -81,6 +81,31 @@ class Admin extends CI_Controller {
         }
     }
 
+    public function update_kepsek($id)
+    {
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
+        $this->form_validation->set_rules('telepon', 'Telepon', 'required');
+    
+        if ($this->form_validation->run() == FALSE) {
+            $this->edit($id);
+        } else {
+            $data = [
+                'nama' => $this->input->post('nama'),
+                'jabatan' => $this->input->post('jabatan'),
+                'telepon' => $this->input->post('telepon')
+            ];
+
+            if ($this->M_admin->update_admin($id, $data)) {
+                $this->session->set_flashdata('success', 'Data admin berhasil diperbarui.');
+                redirect('admin/admin_kepsek');
+            } else {
+                $this->session->set_flashdata('error', 'Data admin gagal diperbarui.');
+                redirect('admin/edit_kepsek/' . $id);
+            }
+        }
+    }
+
     public function hapus($id)
     {
         if ($this->M_admin->hapus_admin($id)) {

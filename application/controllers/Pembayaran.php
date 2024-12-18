@@ -25,7 +25,6 @@ class Pembayaran extends CI_Controller {
         $data['pembayaran'] = $this->M_pembayaran->get_pembayaran_by_siswa($this->session->userdata('nisn'));
         $this->load->view('pembayaran/V_pembayaran_siswa', $data);
     }
-    
 
     // Proses upload bukti transfer
     public function simpan_bukti() {
