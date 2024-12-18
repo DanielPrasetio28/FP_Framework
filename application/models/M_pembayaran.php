@@ -29,4 +29,17 @@ class M_pembayaran extends CI_Model {
         $this->db->join('siswa', 'pembayaran.siswa_nisn = siswa.nisn');
         return $this->db->get()->result();
     }
+
+    public function get_status_pembayaran($nisn)
+    {
+        // Ambil status pembayaran terakhir berdasarkan nisn
+        $this->db->select('status');
+        $this->db->from('pembayaran');
+        $this->db->where('siswa_nisn', $nisn);
+        $this->db->order_by('created_at', 'DESC'); // Mengurutkan berdasarkan tanggal pembayaran terakhir
+        $this->db->limit(1); // Mengambil data pembayaran terakhir
+        $query = $this->db->get();
+        
+        return $query->row(); // Mengembalikan data pembayaran terakhir
+    }
 }

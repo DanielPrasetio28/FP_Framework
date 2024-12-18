@@ -15,9 +15,8 @@
         <ul class="space-y-4">
             <li><a href="<?= site_url('dashboard/dashboard_siswa'); ?>" class="text-blue-500 flex items-center p-3 rounded-md text-2xl font-bold ml-4"><i></i>SiFoAkademik</a></li>
             <li><a href="<?= site_url('dashboard/dashboard_siswa'); ?>" class="text-blue-500 flex items-center hover:bg-gradient-to-r from-blue-500 to-indigo-400 hover:text-white p-3 rounded-md"><i class="fas fa-home mr-3"></i>Dashboard</a></li>
-            <li><a href="<?= site_url('jurnal'); ?>" class="flex items-center hover:bg-gradient-to-r from-blue-500 to-indigo-400 hover:text-white p-3 rounded-md"><i class="fas fa-book mr-3"></i>Jurnal Kelas</a></li>
+            <li><a href="<?= site_url('jurnal/kelas_siswa'); ?>" class="flex items-center hover:bg-gradient-to-r from-blue-500 to-indigo-400 hover:text-white p-3 rounded-md"><i class="fas fa-book mr-3"></i>Jurnal Kelas</a></li>
             <li><a href="<?= site_url('pembayaran/upload_bukti'); ?>" class="flex items-center hover:bg-gradient-to-r from-blue-500 to-indigo-400 hover:text-white p-3 rounded-md"><i class="fas fa-credit-card mr-3"></i>Pembayaran</a></li>
-            <li><a href="<?= site_url('absensi'); ?>" class="flex items-center hover:bg-gradient-to-r from-blue-500 to-indigo-400 hover:text-white p-3 rounded-md"><i class="fas fa-calendar-check mr-3"></i>Absensi</a></li>
         </ul>
     </div>
 
@@ -39,7 +38,7 @@
         <!-- Stats Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Status Pembayaran -->
-            <div class="bg-gradient-to-r from-green-400 to-teal-400 shadow-md rounded-lg p-6 text-center text-white">
+            <div class="bg-gradient-to-r from-green-400 to-teal-400 shadow-md rounded-lg p-6 text-center text-white flex items-center justify-center flex-col">
                 <h3 class="text-2xl font-semibold"><i class="fas fa-wallet mr-2"></i>Status Pembayaran</h3>
                 <p class="text-3xl font-bold mt-2">
                     <?= ($status_pembayaran === 'lunas') ? 'Lunas' : 'Belum Lunas'; ?>
@@ -49,10 +48,11 @@
             <div class="bg-gradient-to-r from-yellow-400 to-orange-400 shadow-md rounded-lg p-6 text-center text-white">
                 <h3 class="text-2xl font-semibold"><i class="fas fa-calendar-check mr-2"></i>Absensi</h3>
                 <p class="mt-2">Hadir: <span class="font-bold"><?= $absensi['hadir']; ?></span> kali</p>
-                <p>Tidak Hadir: <span class="font-bold"><?= $absensi['tidak_hadir']; ?></span> kali</p>
+                <p>Izin: <span class="font-bold"><?= $absensi['izin']; ?></span> kali</p>
+                <p>Alpha: <span class="font-bold"><?= $absensi['alpha']; ?></span> kali</p>
             </div>
             <!-- Jurnal Kelas Terbaru -->
-            <div class="bg-gradient-to-r from-purple-500 to-pink-400 shadow-md rounded-lg p-6 text-center text-white">
+            <div class="bg-gradient-to-r from-purple-500 to-pink-400 shadow-md rounded-lg p-6 text-center text-white flex items-center justify-center flex-col">
                 <h3 class="text-2xl font-semibold"><i class="fas fa-book mr-2"></i>Kelas</h3>
                 <p class="text-3xl font-bold mt-2"><?= $this->session->userdata('tingkat') . '-' . $this->session->userdata('jurusan') . '-' . $this->session->userdata('nama_kelas'); ?></p>
             </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2024 at 08:55 AM
+-- Generation Time: Dec 18, 2024 at 09:20 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `sifoakademik`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `absensi`
+--
+
+CREATE TABLE `absensi` (
+  `id` int(11) NOT NULL,
+  `siswa_nisn` varchar(20) NOT NULL,
+  `kelas_id` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `status` enum('hadir','izin','alpha') NOT NULL DEFAULT 'alpha'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `absensi`
+--
+
+INSERT INTO `absensi` (`id`, `siswa_nisn`, `kelas_id`, `tanggal`, `status`) VALUES
+(1, '1122334458', 1, '2024-12-19', 'hadir'),
+(3, '1122334458', 1, '2024-12-18', 'alpha'),
+(4, '1122334456', 20, '2024-12-18', 'hadir'),
+(5, '12345671', 20, '2024-12-18', 'hadir');
 
 -- --------------------------------------------------------
 
@@ -96,6 +120,13 @@ CREATE TABLE `pembayaran` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`id`, `siswa_nisn`, `bukti_transfer`, `status`, `created_at`) VALUES
+(7, '1122334456', 'WhatsApp_Image_2024-12-11_at_09_44_59_1ff05351.jpg', 'approved', '2024-12-17 12:35:50');
+
 -- --------------------------------------------------------
 
 --
@@ -148,6 +179,14 @@ INSERT INTO `users` (`id`, `username`, `password`, `role`, `created_at`, `update
 --
 
 --
+-- Indexes for table `absensi`
+--
+ALTER TABLE `absensi`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `siswa_nisn` (`siswa_nisn`),
+  ADD KEY `kelas_id` (`kelas_id`);
+
+--
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
@@ -194,6 +233,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `absensi`
+--
+ALTER TABLE `absensi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
@@ -215,7 +260,7 @@ ALTER TABLE `kepsek`
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -226,6 +271,13 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `absensi`
+--
+ALTER TABLE `absensi`
+  ADD CONSTRAINT `absensi_kelas_fk` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `absensi_siswa_fk` FOREIGN KEY (`siswa_nisn`) REFERENCES `siswa` (`nisn`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `pembayaran`

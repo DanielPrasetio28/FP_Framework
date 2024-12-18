@@ -46,5 +46,31 @@ class M_absensi extends CI_Model {
             }
         }
     }
+
+    public function get_absensi_bulanan($nisn)
+    {
+        $bulan = date('m');
+        $tahun = date('Y');
+
+        // Mengambil data absensi berdasarkan nisn dan bulan tahun
+        $this->db->select('status, COUNT(*) as jumlah');
+        $this->db->from('absensi');
+        $this->db->where('siswa_nisn', $nisn); // Ganti dengan kolom yang benar
+        $this->db->where('MONTH(tanggal)', date('m')); // Bulan ini
+        $this->db->where('YEAR(tanggal)', date('Y')); // Tahun ini
+        $this->db->group_by('status');
+        $query = $this->db->get();
+        
+        $absensi = [];
+        foreach ($query->result() as $row) {
+            $absensi[$row->status] = $row->jumlah;
+        }
+        
+        return [
+            'hadir' => isset($absensi['hadir']) ? $absensi['hadir'] : 0,
+            'izin' => isset($absensi['izin']) ? $absensi['izin'] : 0,
+            'alpha' => isset($absensi['alpha']) ? $absensi['alpha'] : 0,
+        ];
+    }
     
 }

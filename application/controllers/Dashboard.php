@@ -30,28 +30,42 @@ class Dashboard extends CI_Controller {
     // Dashboard Siswa
     public function dashboard_siswa()
     {
-        // Contoh data dummy untuk siswa yang login (bisa diambil dari session)
-        $data['nama'] = $this->session->userdata('nama') ?? 'Nama Siswa';
-        $data['nisn'] = $this->session->userdata('nisn') ?? '1234567890';
-        $data['kelas'] = $this->session->userdata('kelas') ?? 'XII IPA 1';
-        $data['tanggal_lahir'] = $this->session->userdata('tanggal_lahir') ?? '2004-01-01';
-
-        // Data status pembayaran (contoh dummy, ganti dengan query ke model jika ada)
-        $data['status_pembayaran'] = 'lunas';
-
-        // Data absensi (dummy)
-        $data['absensi'] = [
-            'hadir' => 20,
-            'tidak_hadir' => 2,
-        ];
-
+        $nisn = $this->session->userdata('nisn');  // Mengambil NISN dari session
+        
+        // Ambil status pembayaran dari model M_pembayaran
+        $this->load->model('M_pembayaran');
+        $status_pembayaran = $this->M_pembayaran->get_status_pembayaran($nisn);
+        
+        // Tentukan status pembayaran berdasarkan hasil query
+        if ($status_pembayaran) {
+            if ($status_pembayaran->status === 'approved') {
+                $status_pembayaran = 'Lunas';
+            } elseif ($status_pembayaran->status === 'pending' || $status_pembayaran->status === 'rejected') {
+                $status_pembayaran = 'Belum Lunas';
+            }
+        } else {
+            $status_pembayaran = 'Belum Lunas';  // Default jika tidak ada data pembayaran
+        }
+        
+        // Ambil data absensi bulan ini
+        $this->load->model('M_absensi');
+        $absensi = $this->M_absensi->get_absensi_bulanan($nisn);
+        
+        // Data status pembayaran
+        $data['status_pembayaran'] = $status_pembayaran;
+        
+        // Data absensi
+        $data['absensi'] = $absensi;
+        
         // Data jurnal kelas terbaru (dummy)
         $data['jurnal_terbaru'] = [
             'materi' => 'Pengenalan Algoritma',
             'tanggal' => date('Y-m-d'),
         ];
-
+        
         // Load view dashboard siswa dengan data
         $this->load->view('dashboard/V_dashboard_siswa', $data);
     }
+    
+    
 }
