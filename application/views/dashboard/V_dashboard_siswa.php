@@ -26,7 +26,7 @@
             </a>
         </li>
         <li>
-            <a href="<?= isset($kelas) && !empty($kelas) ? site_url('jurnal/detail/' . $kelas->id) : 'javascript:void(0)'; ?>" 
+            <a href="<?= isset($kelas) && !empty($kelas) ? site_url('jurnal/detail_siswa/' . $kelas->id) : 'javascript:void(0)'; ?>" 
             class="flex items-center p-3 rounded-md 
                     <?= isset($kelas) && !empty($kelas) ? 'hover:bg-gradient-to-r from-blue-500 to-indigo-400 hover:text-white' : 'text-gray-500 cursor-not-allowed'; ?>">
             <i class="fas fa-book mr-3"></i>Jurnal Kelas

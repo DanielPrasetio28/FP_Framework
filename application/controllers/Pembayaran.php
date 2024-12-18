@@ -7,6 +7,7 @@ class Pembayaran extends CI_Controller {
         parent::__construct();
         $this->load->model('M_pembayaran');
         $this->load->model('M_siswa'); // Pastikan model siswa ada
+        $this->load->model('M_jurnal');
         $this->load->library('upload');
     }
 
@@ -15,16 +16,16 @@ class Pembayaran extends CI_Controller {
         $this->load->view('pembayaran/V_pembayaran_admin', $data);
     }
 
-    // Halaman siswa untuk upload bukti transfer
-    public function upload_bukti() {
-        // Pastikan nisn siswa ada dalam session
-        if (!$this->session->userdata('nisn')) {
-            redirect('auth/login'); // Jika tidak ada nisn, arahkan ke halaman login
-        }
 
+    public function upload_bukti() {
+
+        $kelas = $this->M_jurnal->get_kelas_by_nisn($this->session->userdata('nisn'));
+    
+        $data['kelas'] = $kelas; // Pastikan $kelas berisi data valid
         $data['pembayaran'] = $this->M_pembayaran->get_pembayaran_by_siswa($this->session->userdata('nisn'));
         $this->load->view('pembayaran/V_pembayaran_siswa', $data);
     }
+    
 
     // Proses upload bukti transfer
     public function simpan_bukti() {
