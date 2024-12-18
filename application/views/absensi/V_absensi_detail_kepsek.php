@@ -22,50 +22,37 @@
             </ul>
         </div>
 
+        <!-- Content -->
         <div class="flex-1 p-8 space-y-6 transition-all duration-300" id="content">
             <h1 class="text-3xl font-bold text-gray-800 mb-4">
                 Absensi Tanggal <?= $tanggal ?>
             </h1>
             
-            <form action="<?= site_url('absensi/simpan') ?>" method="post">
-                <div class="bg-white to-indigo-400 shadow-md rounded-lg overflow-x-auto">
-                    <input type="hidden" name="kelas_id" value="<?= $kelas_id ?>">
-                    <input type="hidden" name="tanggal" value="<?= $tanggal ?>">
-                    <table class="min-w-full bg-white border border-gray-300 rounded-md shadow-md">
-                        <thead class="bg-gradient-to-r from-blue-500 to-indigo-400 text-white">
-                            <tr>
-                                <th class="py-3 px-6 text-left">No</th>
-                                <th class="py-3 px-6 text-left">NISN</th>
-                                <th class="py-3 px-6 text-left">Nama</th>
-                                <th class="py-3 px-6 text-left">Status</th>
+            <div class="bg-white to-indigo-400 shadow-md rounded-lg overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-300 rounded-md shadow-md">
+                    <thead class="bg-gradient-to-r from-blue-500 to-indigo-400 text-white">
+                        <tr>
+                            <th class="py-3 px-6 text-left">No</th>
+                            <th class="py-3 px-6 text-left">NISN</th>
+                            <th class="py-3 px-6 text-left">Nama</th>
+                            <th class="py-3 px-6 text-left">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $no = 1; ?>
+                        <?php foreach ($siswa as $s): ?>
+                            <tr class="hover:bg-gradient-to-r from-blue-200 to-indigo-200">
+                                <td class="py-3 px-6"><?= $no++ ?></td>
+                                <td class="py-3 px-6"><?= $s->nisn ?></td>
+                                <td class="py-3 px-6"><?= $s->nama ?></td>
+                                <td class="py-3 px-6">
+                                    <?= ucfirst($s->status) ?>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <?php $no = 1; ?>
-                            <?php foreach ($siswa as $s): ?>
-                                <tr class="hover:bg-gradient-to-r from-blue-200 to-indigo-200">
-                                    <td class="py-3 px-6"><?= $no++ ?></td>
-                                    <td class="py-3 px-6"><?= $s->nisn ?></td>
-                                    <td class="py-3 px-6"><?= $s->nama ?></td>
-                                    <td class="py-3 px-6">
-                                        <select name="absensi[<?= $s->nisn ?>]" class="bg-blue-50 border border-gray-300 rounded-md p-2">
-                                            <option value="hadir" <?= $s->status == 'hadir' ? 'selected' : '' ?>>Hadir</option>
-                                            <option value="izin" <?= $s->status == 'izin' ? 'selected' : '' ?>>Izin</option>
-                                            <option value="alpha" <?= $s->status == 'alpha' ? 'selected' : '' ?>>Alpha</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <button type="submit" class="bg-blue-500 text-white p-4 rounded-md inline-block transform transition-transform duration-300 hover:scale-110 hover:bg-gradient-to-r from-blue-500 to-indigo-500 font-bold mt-5">
-                    <i class="fas fa-check-circle text-l mr-1   "></i> Simpan Absensi
-                </button>
-            </form>
-
-
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
