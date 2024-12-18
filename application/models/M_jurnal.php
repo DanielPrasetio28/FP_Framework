@@ -21,6 +21,17 @@ class M_jurnal extends CI_Model {
         return $this->db->get_where('kelas', ['id' => $id])->row();
     }
 
+    public function get_kelas_by_nisn($nisn)
+    {
+        return $this->db->select('kelas.id, kelas.nama_kelas')
+                        ->from('siswa')
+                        ->join('kelas', 'siswa.kelas_id = kelas.id')
+                        ->where('siswa.nisn', $nisn)
+                        ->get()
+                        ->row();
+    }
+
+
     public function get_mata_pelajaran($id)
     {
         $this->db->select('mata_pelajaran.*');

@@ -13,10 +13,31 @@
 <div class="flex" id="app">
     <div class="bg-white text-gray-800 w-64 h-screen p-5 space-y-6 transition-all duration-300" id="sidebar">
         <ul class="space-y-4">
-            <li><a href="<?= site_url('dashboard/dashboard_siswa'); ?>" class="text-blue-500 flex items-center p-3 rounded-md text-2xl font-bold ml-4"><i></i>SiFoAkademik</a></li>
-            <li><a href="<?= site_url('dashboard/dashboard_siswa'); ?>" class="text-blue-500 flex items-center hover:bg-gradient-to-r from-blue-500 to-indigo-400 hover:text-white p-3 rounded-md"><i class="fas fa-home mr-3"></i>Dashboard</a></li>
-            <li><a href="<?= site_url('jurnal/kelas_siswa'); ?>" class="flex items-center hover:bg-gradient-to-r from-blue-500 to-indigo-400 hover:text-white p-3 rounded-md"><i class="fas fa-book mr-3"></i>Jurnal Kelas</a></li>
-            <li><a href="<?= site_url('pembayaran/upload_bukti'); ?>" class="flex items-center hover:bg-gradient-to-r from-blue-500 to-indigo-400 hover:text-white p-3 rounded-md"><i class="fas fa-credit-card mr-3"></i>Pembayaran</a></li>
+        <li>
+            <a href="<?= site_url('dashboard/dashboard_siswa'); ?>" 
+            class="text-blue-500 flex items-center p-3 rounded-md text-2xl font-bold ml-4">
+            <i></i>SiFoAkademik
+            </a>
+        </li>
+        <li>
+            <a href="<?= site_url('dashboard/dashboard_siswa'); ?>" 
+            class="text-blue-500 flex items-center hover:bg-gradient-to-r from-blue-500 to-indigo-400 hover:text-white p-3 rounded-md">
+            <i class="fas fa-home mr-3"></i>Dashboard
+            </a>
+        </li>
+        <li>
+            <a href="<?= isset($kelas) && !empty($kelas) ? site_url('jurnal/detail/' . $kelas->id) : 'javascript:void(0)'; ?>" 
+            class="flex items-center p-3 rounded-md 
+                    <?= isset($kelas) && !empty($kelas) ? 'hover:bg-gradient-to-r from-blue-500 to-indigo-400 hover:text-white' : 'text-gray-500 cursor-not-allowed'; ?>">
+            <i class="fas fa-book mr-3"></i>Jurnal Kelas
+            </a>
+        </li>
+        <li>
+            <a href="<?= site_url('pembayaran/upload_bukti'); ?>" 
+            class="flex items-center hover:bg-gradient-to-r from-blue-500 to-indigo-400 hover:text-white p-3 rounded-md">
+            <i class="fas fa-credit-card mr-3"></i>Pembayaran
+            </a>
+        </li>
         </ul>
     </div>
 
@@ -41,7 +62,7 @@
             <div class="bg-gradient-to-r from-green-400 to-teal-400 shadow-md rounded-lg p-6 text-center text-white flex items-center justify-center flex-col">
                 <h3 class="text-2xl font-semibold"><i class="fas fa-wallet mr-2"></i>Status Pembayaran</h3>
                 <p class="text-3xl font-bold mt-2">
-                    <?= ($status_pembayaran === 'lunas') ? 'Lunas' : 'Belum Lunas'; ?>
+                    <?= ($status_pembayaran === 'Lunas') ? 'Lunas' : 'Belum Lunas'; ?>
                 </p>
             </div>
             <!-- Absensi -->
