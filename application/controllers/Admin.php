@@ -22,12 +22,35 @@ class Admin extends CI_Controller {
         $this->load->view('admin/V_admin', $data);
     }
 
+    public function admin_kepsek()
+    {
+        $search = $this->input->get('search');
+        $filter = $this->input->get('filter');
+    
+        // Gunakan fungsi untuk mengambil data admin sesuai pencarian atau filter
+        $data['admin'] = $this->M_admin->get_admin($search, $filter);
+    
+        // Mengirim data admin ke view
+        $this->load->view('admin/V_admin_kepsek', $data);
+    }
+
     public function edit($id)
     {
         $data['admin'] = $this->M_admin->get_admin_by_id($id);
 
         if ($data['admin']) {
             $this->load->view('admin/V_edit_admin', $data);
+        } else {
+            show_404();
+        }
+    }
+
+    public function edit_kepsek($id)
+    {
+        $data['admin'] = $this->M_admin->get_admin_by_id($id);
+
+        if ($data['admin']) {
+            $this->load->view('admin/V_edit_admin_kepsek', $data);
         } else {
             show_404();
         }

@@ -23,6 +23,18 @@ class Siswa extends CI_Controller {
         $this->load->view('siswa/V_siswa', $data);
     }
 
+    public function siswa_kepsek()
+    {    
+        $search = $this->input->get('search');
+        $filter = $this->input->get('filter');
+    
+        // Gunakan hanya satu fungsi untuk mengambil data siswa
+        $data['siswa'] = $this->M_siswa->get_siswa($search, $filter);
+    
+        // Mengirim data siswa ke view
+        $this->load->view('siswa/V_siswa_kepsek', $data);
+    }
+
 
     public function edit($nisn)
     {
@@ -31,6 +43,18 @@ class Siswa extends CI_Controller {
         
         if ($data['siswa']) {
             $this->load->view('siswa/V_edit_siswa', $data);
+        } else {
+            show_404();
+        }
+    }
+
+    public function edit_kepsek($nisn)
+    {
+        $data['siswa'] = $this->M_siswa->get_siswa_by_nisn($nisn);
+        $data['kelas'] = $this->M_siswa->get_kelas();
+        
+        if ($data['siswa']) {
+            $this->load->view('siswa/V_edit_siswa_kepsek', $data);
         } else {
             show_404();
         }
@@ -96,6 +120,16 @@ class Siswa extends CI_Controller {
     
         // Muat view tambah siswa
         $this->load->view('siswa/V_tambah_siswa', $data);
+    }
+
+    public function tambah_kepsek()
+    {
+        // Ambil data jurusan dan kelas
+        $data['jurusan'] = $this->M_siswa->get_jurusan();  
+        $data['kelas'] = $this->M_siswa->get_kelas();      
+    
+        // Muat view tambah siswa
+        $this->load->view('siswa/V_tambah_siswa_kepsek', $data);
     }
     
     public function simpan()

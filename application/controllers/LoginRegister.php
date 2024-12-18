@@ -150,7 +150,7 @@ class LoginRegister extends CI_Controller {
                 // Jika login berhasil, set session atau lakukan hal lainnya
                 $this->session->set_userdata('username', $login_data->username);
                 $this->session->set_userdata('role', $login_data->role);  // Simpan role
-                redirect('dashboard/V_dashboard_kepsek');
+                redirect('dashboard/dashboard_kepsek');
             } else {
                 // Jika login gagal, beri pesan error
                 $this->session->set_flashdata('error', 'Username atau Password Salah');

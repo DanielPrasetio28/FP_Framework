@@ -16,6 +16,12 @@ class Jurnal extends CI_Controller {
         $this->load->view('jurnal/V_jurnal', $data);
     }
 
+    public function jurnal_kepsek()
+    {
+        $data['kelas'] = $this->M_jurnal->get_all_kelas();
+        $this->load->view('jurnal/V_jurnal_kepsek', $data);
+    }
+
     public function tambah_kelas()
     {
         $nama_kelas = $this->input->post('nama_kelas');
@@ -39,6 +45,16 @@ class Jurnal extends CI_Controller {
         $data['kelas'] = $this->M_jurnal->get_kelas_by_id($kelas_id);
 
         $this->load->view('jurnal/V_kelas', $data);
+    }
+
+    public function detail_kepsek($kelas_id)
+    {
+        // Mengambil siswa berdasarkan kelas_id
+        $data['siswa'] = $this->M_siswa->get_siswa_by_kelas($kelas_id);
+        // Mengambil detail kelas berdasarkan kelas_id untuk ditampilkan di view
+        $data['kelas'] = $this->M_jurnal->get_kelas_by_id($kelas_id);
+
+        $this->load->view('jurnal/V_kelas_kepsek', $data);
     }
 
     public function detail_siswa($kelas_id)

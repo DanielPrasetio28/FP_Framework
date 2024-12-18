@@ -64,9 +64,18 @@ class Dashboard extends CI_Controller {
         ];
         $data['kelas'] = $kelas; // Tambahkan data kelas ke view
     
-        // Load view dashboard siswa dengan data
+        // Load view dashboard siswa dengan datas
         $this->load->view('dashboard/V_dashboard_siswa', $data);
     }
 
+    public function dashboard_kepsek()
+    {
+        // Ambil data jumlah admin, siswa, dan kelas
+        $data['jumlah_admin'] = $this->M_admin->get_jumlah_admin();
+        $data['jumlah_siswa'] = $this->M_siswa->get_jumlah_siswa();
+        $data['jumlah_kelas'] = $this->M_jurnal->get_jumlah_kelas();
+        
+        $this->load->view('dashboard/V_dashboard_kepsek', $data);
+    }
     
 }

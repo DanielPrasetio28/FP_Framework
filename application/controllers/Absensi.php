@@ -15,12 +15,24 @@ class Absensi extends CI_Controller {
         $this->load->view('absensi/V_absensi', $data);
     }
 
+    public function absensi_kepsek() {
+        $data['kelas'] = $this->M_jurnal->get_all_kelas();
+        $this->load->view('absensi/V_absensi_kepsek', $data);
+    }
+
     // Menampilkan daftar tanggal untuk kelas tertentu
     public function tanggal($kelas_id) {
         $data['kelas'] = $this->M_jurnal->get_kelas_by_id($kelas_id);
         $data['kelas_id'] = $kelas_id;
         $data['tanggal'] = $this->M_absensi->get_tanggal_hari_kerja();
-        $this->load->view('absensi/V_absensi_tanggal', $data);
+        $this->load->view('absensi/V_absensi_tanggal_kepsek', $data);
+    }
+
+    public function tanggal_kepsek($kelas_id) {
+        $data['kelas'] = $this->M_jurnal->get_kelas_by_id($kelas_id);
+        $data['kelas_id'] = $kelas_id;
+        $data['tanggal'] = $this->M_absensi->get_tanggal_hari_kerja();
+        $this->load->view('absensi/V_absensi_tanggal_kepsek', $data);
     }
 
     // Menampilkan tabel siswa dan absensi untuk tanggal tertentu
@@ -29,6 +41,13 @@ class Absensi extends CI_Controller {
         $data['tanggal'] = $tanggal;
         $data['siswa'] = $this->M_absensi->get_siswa_by_kelas($kelas_id, $tanggal);
         $this->load->view('absensi/V_absensi_detail', $data);
+    }
+
+    public function detail_kepsek($kelas_id, $tanggal) {
+        $data['kelas_id'] = $kelas_id;
+        $data['tanggal'] = $tanggal;
+        $data['siswa'] = $this->M_absensi->get_siswa_by_kelas($kelas_id, $tanggal);
+        $this->load->view('absensi/V_absensi_detail_kepsek', $data);
     }
 
     // Proses penyimpanan absensi

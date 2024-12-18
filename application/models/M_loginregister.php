@@ -67,8 +67,7 @@ class M_loginregister extends CI_Model {
     public function login_kepsek($username, $password)
     {
         $this->db->where('username', $username);
-        $this->db->where('role', 'kepsek');
-        $query = $this->db->get('users');
+        $query = $this->db->get('kepsek');
         $login_data = $query->row();
     
         // Verifikasi password (tanpa password_hash)

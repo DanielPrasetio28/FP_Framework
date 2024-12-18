@@ -14,7 +14,7 @@
         <!-- Login Box -->
         <div class="bg-white shadow-lg rounded-lg p-8 max-w-sm w-full space-y-6">
             <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Login Kepala Sekolah</h2>
-            <form action="<?= site_url('loginregister/authenticate_kepsek'); ?>" method="POST">
+            <form action="<?= site_url('loginregister/login_kepsek'); ?>" method="POST">
                 <div class="space-y-4">
                     <div>
                         <label for="username" class="block text-sm font-medium text-gray-700 mb-2">Username</label>
