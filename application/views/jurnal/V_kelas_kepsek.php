@@ -22,18 +22,59 @@
             </ul>
         </div>
 
-
         <div class="flex-1 p-8 space-y-6 transition-all duration-300" id="content">
             <h1 class="text-3xl font-bold text-gray-800 mb-4">
                 Detail Kelas: <?= $kelas->tingkat . '-' . $kelas->jurusan . '-' . $kelas->nama_kelas; ?>
             </h1>
             <div class="flex justify-between items-center mb-6">
-                <h1 class="text-3xl font-bold text-gray-800">Daftar Siswa</h1>
+                <h1 class="text-3xl font-bold text-gray-800">Daftar Mata Pelajaran</h1>
                 <a href="<?= site_url('jurnal/hapus/' . $kelas->id); ?>" 
                 class="bg-red-500 font-bold text-white p-3 rounded-md inline-block transform transition-transform duration-300 hover:scale-110 hover:bg-gradient-to-r from-red-500 to-pink-600"
                 onclick="return confirm('Apakah Anda yakin ingin menghapus kelas ini?');">
                     <i class="fas fa-trash mr-2"></i>Hapus Kelas
                 </a>
+            </div>
+
+            <form method="POST" action="<?= site_url('jurnal/tambah_mata_pelajaran/' . $kelas->id); ?>">
+                <label for="id_mata_pelajaran">Tambah Mata Pelajaran:</label>
+                <select name="id_mata_pelajaran" id="id_mata_pelajaran" class="border rounded p-2">
+                    <?php foreach ($all_mata_pelajaran as $mp): ?>
+                        <!-- Pastikan mata pelajaran belum ada di kelas ini -->
+                        <?php if (!in_array($mp->id_mata_pelajaran, array_column($mata_pelajaran, 'id_mata_pelajaran'))): ?>
+                            <option value="<?= $mp->id_mata_pelajaran; ?>"><?= $mp->nama_mata_pelajaran; ?> </option>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </select>
+                <button type="submit" class="bg-blue-500 text-white p-2 rounded-md inline-block transform transition-transform duration-300 hover:scale-110 hover:bg-gradient-to-r from-blue-500 to-indigo-500">
+                    <i class="fas fa-add"></i>
+                </button>
+            </form>
+
+            <div class="bg-white shadow-md rounded-lg overflow-x-auto">
+                <table class="min-w-full table-auto border-collapse">
+                    <thead class="bg-gradient-to-r from-blue-500 to-indigo-400 text-white">
+                        <tr>
+                            <th class="py-3 px-6 text-left">No</th>
+                            <th class="py-3 px-6 text-left">Nama Mata Pelajaran</th>
+                            <th class="py-3 px-6 text-left">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $no = 1; foreach ($mata_pelajaran as $mp): ?>
+                            <tr class="hover:bg-gradient-to-r from-blue-200 to-indigo-200">
+                                <td class="py-2 px-6"><?= $no++; ?></td>
+                                <td class="py-2 px-6"><?= $mp->nama_mata_pelajaran; ?></td>
+                                <td class="py-2 px-6">
+                                    <a href="<?= site_url('jurnal/hapus_mata_pelajaran/' . $kelas->id . '/' . $mp->id_mata_pelajaran); ?>" class="text-red-500 font-bold inline-block transform transition-transform duration-300 hover:scale-110" onclick="return confirm('Yakin ingin menghapus mata pelajaran ini?')">Hapus</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-3xl font-bold text-gray-800">Daftar Siswa</h1>
             </div>
 
             <div class="bg-white shadow-md rounded-lg overflow-x-auto">
@@ -57,7 +98,6 @@
                 </table>
             </div>
         </div>
-
-
+    </div>
 </body>
 </html>

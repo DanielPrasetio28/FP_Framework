@@ -88,7 +88,7 @@
                                     <td class="py-2 px-4"><?= $pembayaran->nama; ?></td>
                                     <td class="py-2 px-4">
                                         <?php if ($pembayaran->bukti_transfer) : ?>
-                                            <a href="<?= base_url('uploads/bukti_transfer/' . $pembayaran->bukti_transfer); ?>" target="_blank" class="text-blue-500 hover:underline">Lihat Bukti</a>
+                                            <a href="<?= base_url('uploads/bukti_transfer/' . $pembayaran->bukti_transfer); ?>" target="_blank" class="text-blue-500 font-bold inline-block transform transition-transform duration-300 hover:scale-110">Lihat Bukti</a>
                                         <?php else : ?>
                                             Tidak Ada
                                         <?php endif; ?>

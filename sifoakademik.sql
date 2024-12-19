@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2024 at 09:20 AM
+-- Generation Time: Dec 19, 2024 at 12:05 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -43,7 +43,13 @@ INSERT INTO `absensi` (`id`, `siswa_nisn`, `kelas_id`, `tanggal`, `status`) VALU
 (1, '1122334458', 1, '2024-12-19', 'hadir'),
 (3, '1122334458', 1, '2024-12-18', 'alpha'),
 (4, '1122334456', 20, '2024-12-18', 'hadir'),
-(5, '12345671', 20, '2024-12-18', 'hadir');
+(5, '12345671', 20, '2024-12-18', 'hadir'),
+(6, '1122334456', 20, '2024-12-19', 'hadir'),
+(7, '12345671', 20, '2024-12-19', 'hadir'),
+(8, '1122334456', 20, '2024-12-20', 'izin'),
+(9, '12345671', 20, '2024-12-20', 'hadir'),
+(10, '1122334456', 20, '2024-12-23', 'alpha'),
+(11, '12345671', 20, '2024-12-23', 'hadir');
 
 -- --------------------------------------------------------
 
@@ -66,7 +72,7 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id`, `username`, `password`, `nama`, `jabatan`, `telepon`) VALUES
 (4, 'cicicantiik', '200403', 'Vazcha Tezza Lonica Raynegha', 'Guru Ekonomi', '082232351664'),
-(5, 'adlein82', 'pinang03', 'Daniel Prasetio Budiman', 'Guru Informatika', '082119278213');
+(5, 'adlein82', 'pinang03', 'Daniel Prasetio Budiman Raynegha', 'Guru Informatika', '082119278213');
 
 -- --------------------------------------------------------
 
@@ -92,7 +98,20 @@ INSERT INTO `kelas` (`id`, `nama_kelas`, `jurusan`, `tingkat`) VALUES
 (10, '3', 'IPS', 'X'),
 (11, '1', 'IPS', 'XII'),
 (19, '2', 'IPS', 'XII'),
-(20, '10', 'MIPA', 'XII');
+(20, '10', 'MIPA', 'XII'),
+(21, '4', 'IPS', 'X');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kelas_mata_pelajaran`
+--
+
+CREATE TABLE `kelas_mata_pelajaran` (
+  `id` int(11) NOT NULL,
+  `kelas_id` int(11) NOT NULL,
+  `mata_pelajaran_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -105,6 +124,73 @@ CREATE TABLE `kepsek` (
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kepsek`
+--
+
+INSERT INTO `kepsek` (`id`, `username`, `password`) VALUES
+(1, 'Daniel123', '123456');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mata_pelajaran`
+--
+
+CREATE TABLE `mata_pelajaran` (
+  `id_mata_pelajaran` int(11) NOT NULL,
+  `nama_mata_pelajaran` varchar(100) NOT NULL,
+  `tingkat` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `mata_pelajaran`
+--
+
+INSERT INTO `mata_pelajaran` (`id_mata_pelajaran`, `nama_mata_pelajaran`, `tingkat`) VALUES
+(61, 'Pendidikan Agama dan Budi Pekerti', 'X'),
+(62, 'Pendidikan Pancasila dan Kewarganegaraan', 'X'),
+(63, 'Bahasa Indonesia', 'X'),
+(64, 'Matematika', 'X'),
+(65, 'Sejarah Indonesia', 'X'),
+(66, 'Bahasa Inggris', 'X'),
+(67, 'Seni Budaya', 'X'),
+(68, 'Pendidikan Jasmani, Olahraga, dan Kesehatan', 'X'),
+(69, 'Informatika', 'X'),
+(70, 'Fisika', 'X'),
+(71, 'Kimia', 'X'),
+(72, 'Biologi', 'X'),
+(73, 'Geografi', 'X'),
+(74, 'Ekonomi', 'X'),
+(75, 'Sosiologi', 'X'),
+(76, 'Pendidikan Agama dan Budi Pekerti', 'XI'),
+(77, 'Pendidikan Pancasila dan Kewarganegaraan', 'XI'),
+(78, 'Bahasa Indonesia', 'XI'),
+(79, 'Matematika', 'XI'),
+(80, 'Sejarah Indonesia', 'XI'),
+(81, 'Bahasa Inggris', 'XI'),
+(82, 'Seni Budaya', 'XI'),
+(83, 'Pendidikan Jasmani, Olahraga, dan Kesehatan', 'XI'),
+(84, 'Fisika', 'XI'),
+(85, 'Kimia', 'XI'),
+(86, 'Biologi', 'XI'),
+(87, 'Geografi', 'XI'),
+(88, 'Ekonomi', 'XI'),
+(89, 'Sosiologi', 'XI'),
+(90, 'Pendidikan Agama dan Budi Pekerti', 'XII'),
+(91, 'Pendidikan Pancasila dan Kewarganegaraan', 'XII'),
+(92, 'Bahasa Indonesia', 'XII'),
+(93, 'Matematika', 'XII'),
+(94, 'Bahasa Inggris', 'XII'),
+(95, 'Seni Budaya', 'XII'),
+(96, 'Pendidikan Jasmani, Olahraga, dan Kesehatan', 'XII'),
+(97, 'Fisika', 'XII'),
+(98, 'Kimia', 'XII'),
+(99, 'Biologi', 'XII'),
+(100, 'Geografi', 'XII'),
+(101, 'Ekonomi', 'XII'),
+(102, 'Sosiologi', 'XII');
 
 -- --------------------------------------------------------
 
@@ -125,7 +211,8 @@ CREATE TABLE `pembayaran` (
 --
 
 INSERT INTO `pembayaran` (`id`, `siswa_nisn`, `bukti_transfer`, `status`, `created_at`) VALUES
-(7, '1122334456', 'WhatsApp_Image_2024-12-11_at_09_44_59_1ff05351.jpg', 'approved', '2024-12-17 12:35:50');
+(8, '1122334456', 'WhatsApp_Image_2024-12-11_at_09_44_59_1ff053511.jpg', 'approved', '2024-12-18 15:38:48'),
+(9, '1122334456', 'Desain_tanpa_judul.png', 'approved', '2024-12-18 15:42:51');
 
 -- --------------------------------------------------------
 
@@ -146,6 +233,8 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`nisn`, `nama`, `angkatan`, `kelas_id`, `password`) VALUES
+('1122334450', 'Reno', '2022', 20, ''),
+('1122334451', 'Keke', '2022', 20, ''),
 ('1122334456', 'Daniel Prasetio Budiman', '2024', 20, '123456'),
 ('1122334458', 'Marvel', '2021', 1, ''),
 ('1122334459', 'Vazcha Tezza Lonica Raynegha', '2022', 9, ''),
@@ -200,11 +289,25 @@ ALTER TABLE `kelas`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `kelas_mata_pelajaran`
+--
+ALTER TABLE `kelas_mata_pelajaran`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `kelas_id` (`kelas_id`),
+  ADD KEY `mata_pelajaran_id` (`mata_pelajaran_id`);
+
+--
 -- Indexes for table `kepsek`
 --
 ALTER TABLE `kepsek`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indexes for table `mata_pelajaran`
+--
+ALTER TABLE `mata_pelajaran`
+  ADD PRIMARY KEY (`id_mata_pelajaran`);
 
 --
 -- Indexes for table `pembayaran`
@@ -236,7 +339,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `admin`
@@ -248,19 +351,31 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `kelas_mata_pelajaran`
+--
+ALTER TABLE `kelas_mata_pelajaran`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `kepsek`
 --
 ALTER TABLE `kepsek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `mata_pelajaran`
+--
+ALTER TABLE `mata_pelajaran`
+  MODIFY `id_mata_pelajaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -278,6 +393,13 @@ ALTER TABLE `users`
 ALTER TABLE `absensi`
   ADD CONSTRAINT `absensi_kelas_fk` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `absensi_siswa_fk` FOREIGN KEY (`siswa_nisn`) REFERENCES `siswa` (`nisn`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `kelas_mata_pelajaran`
+--
+ALTER TABLE `kelas_mata_pelajaran`
+  ADD CONSTRAINT `kelas_mata_pelajaran_ibfk_1` FOREIGN KEY (`kelas_id`) REFERENCES `kelas` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `kelas_mata_pelajaran_ibfk_2` FOREIGN KEY (`mata_pelajaran_id`) REFERENCES `mata_pelajaran` (`id_mata_pelajaran`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `pembayaran`

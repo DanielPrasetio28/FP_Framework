@@ -28,6 +28,28 @@
             <h1 class="text-3xl font-bold text-gray-800 mb-4">
                 Detail Kelas: <?= $kelas->tingkat . '-' . $kelas->jurusan . '-' . $kelas->nama_kelas; ?>
             </h1>
+
+            <h1 class="text-3xl font-bold text-gray-800">Daftar Mata Pelajaran</h1>
+
+            <div class="bg-white shadow-md rounded-lg overflow-x-auto">
+                <table class="min-w-full table-auto border-collapse">
+                    <thead class="bg-gradient-to-r from-blue-500 to-indigo-400 text-white">
+                        <tr>
+                            <th class="py-3 px-6 text-left">No</th>
+                            <th class="py-3 px-6 text-left">Nama Mata Pelajaran</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $no = 1; foreach ($mata_pelajaran as $mp): ?>
+                            <tr class="hover:bg-gradient-to-r from-blue-200 to-indigo-200">
+                                <td class="py-2 px-6"><?= $no++; ?></td>
+                                <td class="py-2 px-6"><?= $mp->nama_mata_pelajaran; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-3xl font-bold text-gray-800">Daftar Siswa</h1>
                 <a href="<?= site_url('jurnal/hapus/' . $kelas->id); ?>" 
