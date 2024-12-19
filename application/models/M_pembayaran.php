@@ -51,4 +51,10 @@ class M_pembayaran extends CI_Model {
         
         return $query->row(); // Mengembalikan data pembayaran terakhir
     }
+
+    public function get_siswa_lunas() {
+        return $this->db->where('status', 'approved') // Status pembayaran lunas
+                        ->count_all_results('pembayaran'); // Menghitung jumlah siswa lunas
+    }
+    
 }

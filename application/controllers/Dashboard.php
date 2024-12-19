@@ -11,6 +11,7 @@ class Dashboard extends CI_Controller {
         $this->load->model('M_jurnal'); 
         $this->load->model('M_admin'); 
         $this->load->model('M_pembayaran'); 
+        $this->load->model('M_absensi'); 
 
         // Load session library jika belum diload
         $this->load->library('session');
@@ -23,6 +24,8 @@ class Dashboard extends CI_Controller {
         $data['jumlah_admin'] = $this->M_admin->get_jumlah_admin();
         $data['jumlah_siswa'] = $this->M_siswa->get_jumlah_siswa();
         $data['jumlah_kelas'] = $this->M_jurnal->get_jumlah_kelas();
+        $data['kehadiran_hari_ini'] = $this->M_absensi->get_kehadiran_hari_ini(); // Fungsi model untuk kehadiran hari ini
+        $data['jumlah_siswa_lunas'] = $this->M_pembayaran->get_siswa_lunas(); // Fungsi model untuk siswa lunas
 
         // Load view dashboard admin dengan data
         $this->load->view('dashboard/V_dashboard', $data);
@@ -75,7 +78,11 @@ class Dashboard extends CI_Controller {
         $data['jumlah_admin'] = $this->M_admin->get_jumlah_admin();
         $data['jumlah_siswa'] = $this->M_siswa->get_jumlah_siswa();
         $data['jumlah_kelas'] = $this->M_jurnal->get_jumlah_kelas();
+        $data['kehadiran_hari_ini'] = $this->M_absensi->get_kehadiran_hari_ini(); // Fungsi model untuk kehadiran hari ini
+        $data['jumlah_siswa_lunas'] = $this->M_pembayaran->get_siswa_lunas(); // Fungsi model untuk siswa lunas
+
         $data['riwayat_pembayaran'] = $this->M_pembayaran->get_riwayat_pembayaran(10);
+        
         $this->load->view('dashboard/V_dashboard_kepsek', $data);
     }
     

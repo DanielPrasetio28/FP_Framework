@@ -56,14 +56,14 @@
                     <div class="text-xl font-semibold flex items-center justify-center mt-8">
                         <i class="fas fa-calendar-day mr-3"></i>Total Kehadiran Hari Ini
                     </div>
-                    <div class="text-3xl font-bold mt-2">90</div>
+                    <div class="text-3xl font-bold mt-2"><?= $kehadiran_hari_ini; ?></div>
                     <p class="mt-2 mb-8">Siswa hadir</p>
                 </div>
                 <div class="bg-gradient-to-r from-pink-400 to-purple-500 shadow-md rounded-lg p-6 text-center text-white">
                     <div class="text-xl font-semibold flex items-center justify-center mt-12">
                         <i class="fas fa-wallet mr-3"></i>Jumlah Siswa Lunas
                     </div>
-                    <div class="text-3xl font-bold mt-2 mb-8">80</div>
+                    <div class="text-3xl font-bold mt-2 mb-8"><?= $jumlah_siswa_lunas; ?></div>
                 </div>
             </div>
 

@@ -73,4 +73,11 @@ class M_absensi extends CI_Model {
         ];
     }
     
+    public function get_kehadiran_hari_ini() {
+        $tanggal_hari_ini = date('Y-m-d'); // Mendapatkan tanggal hari ini
+        return $this->db->where('tanggal', $tanggal_hari_ini)
+                        ->where('status', 'hadir') 
+                        ->count_all_results('absensi'); // Menghitung jumlah hasil
+    }
+    
 }
