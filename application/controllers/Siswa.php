@@ -157,9 +157,13 @@ class Siswa extends CI_Controller {
             $this->session->set_flashdata('error', 'Data siswa tidak ditemukan.');
         }
     
-        // Redirect kembali ke halaman daftar siswa
-        redirect('siswa/V_siswa_kepsek');
-    }
+        // Ambil data siswa terbaru setelah penghapusan
+        $this->db->select('nisn, nama, angkatan, kelas_id'); // Tentukan kolom yang ingin ditampilkan
+        $data['siswa'] = $this->db->get('siswa')->result();
+    
+        // Kirim data siswa ke view V_siswa_kepsek
+        redirect('siswa_kepsek');
+    }    
 
     public function tambah()
     {
