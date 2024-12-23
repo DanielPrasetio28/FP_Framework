@@ -101,6 +101,19 @@
             // Redirect kembali ke halaman jurnal
             redirect('jurnal');
         }
+
+        public function hapus_kepsek($id)
+        {
+            // Panggil fungsi hapus_kelas di model dan cek apakah berhasil
+            if ($this->M_jurnal->hapus_kelas($id)) {
+                $this->session->set_flashdata('success', 'Kelas berhasil dihapus.');
+            } else {
+                $this->session->set_flashdata('error', 'Kelas gagal dihapus.');
+            }
+
+            // Redirect kembali ke halaman jurnal
+            redirect('jurnal/V_jurnal_kepsek');
+        }
         
         public function tambah_mata_pelajaran($kelas_id) {
             $mata_pelajaran_id = $this->input->post('id_mata_pelajaran');

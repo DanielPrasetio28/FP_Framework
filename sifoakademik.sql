@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2024 at 12:05 PM
+-- Generation Time: Dec 23, 2024 at 02:51 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -49,7 +49,8 @@ INSERT INTO `absensi` (`id`, `siswa_nisn`, `kelas_id`, `tanggal`, `status`) VALU
 (8, '1122334456', 20, '2024-12-20', 'izin'),
 (9, '12345671', 20, '2024-12-20', 'hadir'),
 (10, '1122334456', 20, '2024-12-23', 'alpha'),
-(11, '12345671', 20, '2024-12-23', 'hadir');
+(11, '12345671', 20, '2024-12-23', 'hadir'),
+(14, '1122334458', 1, '2024-12-19', 'hadir');
 
 -- --------------------------------------------------------
 
@@ -71,8 +72,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`, `nama`, `jabatan`, `telepon`) VALUES
-(4, 'cicicantiik', '200403', 'Vazcha Tezza Lonica Raynegha', 'Guru Ekonomi', '082232351664'),
-(5, 'adlein82', 'pinang03', 'Daniel Prasetio Budiman Raynegha', 'Guru Informatika', '082119278213');
+(4, 'cicicantiik', '200403', 'Vazcha Tezza Lonica Raynegha', 'Guru Ekonomi', '082232351664');
 
 -- --------------------------------------------------------
 
@@ -112,6 +112,21 @@ CREATE TABLE `kelas_mata_pelajaran` (
   `kelas_id` int(11) NOT NULL,
   `mata_pelajaran_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kelas_mata_pelajaran`
+--
+
+INSERT INTO `kelas_mata_pelajaran` (`id`, `kelas_id`, `mata_pelajaran_id`) VALUES
+(8, 1, 62),
+(9, 20, 90),
+(10, 20, 92),
+(11, 20, 95),
+(12, 20, 94),
+(13, 20, 96),
+(14, 20, 91),
+(15, 1, 67),
+(16, 1, 72);
 
 -- --------------------------------------------------------
 
@@ -212,7 +227,8 @@ CREATE TABLE `pembayaran` (
 
 INSERT INTO `pembayaran` (`id`, `siswa_nisn`, `bukti_transfer`, `status`, `created_at`) VALUES
 (8, '1122334456', 'WhatsApp_Image_2024-12-11_at_09_44_59_1ff053511.jpg', 'approved', '2024-12-18 15:38:48'),
-(9, '1122334456', 'Desain_tanpa_judul.png', 'approved', '2024-12-18 15:42:51');
+(9, '1122334456', 'Desain_tanpa_judul.png', 'approved', '2024-12-18 15:42:51'),
+(10, '1122334451', 'WhatsApp_Image_2024-12-11_at_09_44_58_c45307d0.jpg', 'rejected', '2024-12-19 13:28:45');
 
 -- --------------------------------------------------------
 
@@ -234,34 +250,12 @@ CREATE TABLE `siswa` (
 
 INSERT INTO `siswa` (`nisn`, `nama`, `angkatan`, `kelas_id`, `password`) VALUES
 ('1122334450', 'Reno', '2022', 20, ''),
-('1122334451', 'Keke', '2022', 20, ''),
+('1122334451', 'Keke', '2022', 20, 'keke123'),
 ('1122334456', 'Daniel Prasetio Budiman', '2024', 20, '123456'),
 ('1122334458', 'Marvel', '2021', 1, ''),
 ('1122334459', 'Vazcha Tezza Lonica Raynegha', '2022', 9, ''),
 ('12345671', 'Gabriel Prasetio Budiman', '2024', 20, ''),
 ('1234567122', 'Eddy Budiman', '2022', 19, '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `role` enum('siswa','admin','kepsek') NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`, `role`, `created_at`, `updated_at`) VALUES
-(7, 'Eddy', '123456', 'admin', '2024-12-10 19:18:33', '2024-12-10 19:18:33');
 
 --
 -- Indexes for dumped tables
@@ -325,13 +319,6 @@ ALTER TABLE `siswa`
   ADD KEY `kelas_id` (`kelas_id`);
 
 --
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -339,7 +326,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `admin`
@@ -357,7 +344,7 @@ ALTER TABLE `kelas`
 -- AUTO_INCREMENT for table `kelas_mata_pelajaran`
 --
 ALTER TABLE `kelas_mata_pelajaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `kepsek`
@@ -375,12 +362,6 @@ ALTER TABLE `mata_pelajaran`
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --

@@ -136,6 +136,31 @@ class Siswa extends CI_Controller {
         redirect('siswa');
     }
 
+    public function hapus_kepsek($nisn)
+    {
+        // Cek apakah data siswa dengan NISN yang diberikan ada
+        $this->db->where('nisn', $nisn);
+        $siswa = $this->db->get('siswa')->row();
+    
+        if ($siswa) {
+            // Hapus data siswa
+            $this->db->where('nisn', $nisn);
+            $this->db->delete('siswa');
+    
+            // Cek apakah penghapusan berhasil
+            if ($this->db->affected_rows() > 0) {
+                $this->session->set_flashdata('success', 'Data siswa berhasil dihapus.');
+            } else {
+                $this->session->set_flashdata('error', 'Gagal menghapus data siswa.');
+            }
+        } else {
+            $this->session->set_flashdata('error', 'Data siswa tidak ditemukan.');
+        }
+    
+        // Redirect kembali ke halaman daftar siswa
+        redirect('siswa/V_siswa_kepsek');
+    }
+
     public function tambah()
     {
         // Ambil data jurusan dan kelas

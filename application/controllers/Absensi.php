@@ -25,7 +25,7 @@ class Absensi extends CI_Controller {
         $data['kelas'] = $this->M_jurnal->get_kelas_by_id($kelas_id);
         $data['kelas_id'] = $kelas_id;
         $data['tanggal'] = $this->M_absensi->get_tanggal_hari_kerja();
-        $this->load->view('absensi/V_absensi_tanggal_kepsek', $data);
+        $this->load->view('absensi/V_absensi_tanggal', $data);
     }
 
     public function tanggal_kepsek($kelas_id) {
