@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2024 at 02:51 PM
+-- Generation Time: Dec 23, 2024 at 03:25 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -35,23 +35,6 @@ CREATE TABLE `absensi` (
   `status` enum('hadir','izin','alpha') NOT NULL DEFAULT 'alpha'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `absensi`
---
-
-INSERT INTO `absensi` (`id`, `siswa_nisn`, `kelas_id`, `tanggal`, `status`) VALUES
-(1, '1122334458', 1, '2024-12-19', 'hadir'),
-(3, '1122334458', 1, '2024-12-18', 'alpha'),
-(4, '1122334456', 20, '2024-12-18', 'hadir'),
-(5, '12345671', 20, '2024-12-18', 'hadir'),
-(6, '1122334456', 20, '2024-12-19', 'hadir'),
-(7, '12345671', 20, '2024-12-19', 'hadir'),
-(8, '1122334456', 20, '2024-12-20', 'izin'),
-(9, '12345671', 20, '2024-12-20', 'hadir'),
-(10, '1122334456', 20, '2024-12-23', 'alpha'),
-(11, '12345671', 20, '2024-12-23', 'hadir'),
-(14, '1122334458', 1, '2024-12-19', 'hadir');
-
 -- --------------------------------------------------------
 
 --
@@ -72,7 +55,17 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`, `nama`, `jabatan`, `telepon`) VALUES
-(4, 'cicicantiik', '200403', 'Vazcha Tezza Lonica Raynegha', 'Guru Ekonomi', '082232351664');
+(1, 'erna123', '123456', 'Ernawati Sukamulia', 'Guru Biologi', '082119278222'),
+(2, 'edo123', '123456', 'Edo Prasetia', 'Guru Kimia', '081234567890'),
+(3, 'budi456', '123456', 'Budi Setiawan', 'Guru Matematika', '081234567891'),
+(4, 'citra789', '123456', 'Citra Dewi', 'Guru Fisika', '081234567892'),
+(5, 'dani1011', '123456', 'Dani Rahman', 'Guru Biologi', '081234567893'),
+(6, 'eka1213', '123456', 'Eka Putri', 'Guru Bahasa Indonesia', '081234567894'),
+(7, 'faisal1415', '123456', 'Faisal Maulana', 'Guru Bahasa Inggris', '081234567895'),
+(8, 'gina1617', '123456', 'Gina Sari', 'Guru Sejarah', '081234567896'),
+(9, 'hendra1819', '123456', 'Hendra Santoso', 'Guru Ekonomi', '081234567897'),
+(10, 'indah2021', '123456', 'Indah Pramesti', 'Guru Geografi', '081234567898'),
+(11, 'joko2223', '123456', 'Joko Susanto', 'Guru Pendidikan Pancasila', '081234567899');
 
 -- --------------------------------------------------------
 
@@ -92,14 +85,24 @@ CREATE TABLE `kelas` (
 --
 
 INSERT INTO `kelas` (`id`, `nama_kelas`, `jurusan`, `tingkat`) VALUES
-(1, '1', 'MIPA', 'X'),
-(7, '4', 'MIPA', 'X'),
-(9, '3', 'MIPA', 'X'),
-(10, '3', 'IPS', 'X'),
-(11, '1', 'IPS', 'XII'),
-(19, '2', 'IPS', 'XII'),
-(20, '10', 'MIPA', 'XII'),
-(21, '4', 'IPS', 'X');
+(23, '1', 'MIPA', 'X'),
+(24, '2', 'MIPA', 'X'),
+(25, '3', 'MIPA', 'X'),
+(26, '1', 'IPS', 'X'),
+(27, '2', 'IPS', 'X'),
+(28, '3', 'IPS', 'X'),
+(29, '1', 'MIPA', 'XI'),
+(30, '2', 'MIPA', 'XI'),
+(31, '3', 'MIPA', 'XI'),
+(32, '1', 'IPS', 'XI'),
+(33, '2', 'IPS', 'XI'),
+(34, '3', 'IPS', 'XI'),
+(35, '1', 'MIPA', 'XII'),
+(36, '2', 'MIPA', 'XII'),
+(37, '3', 'MIPA', 'XII'),
+(38, '1', 'IPS', 'XII'),
+(39, '2', 'IPS', 'XII'),
+(40, '3', 'IPS', 'XII');
 
 -- --------------------------------------------------------
 
@@ -112,21 +115,6 @@ CREATE TABLE `kelas_mata_pelajaran` (
   `kelas_id` int(11) NOT NULL,
   `mata_pelajaran_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `kelas_mata_pelajaran`
---
-
-INSERT INTO `kelas_mata_pelajaran` (`id`, `kelas_id`, `mata_pelajaran_id`) VALUES
-(8, 1, 62),
-(9, 20, 90),
-(10, 20, 92),
-(11, 20, 95),
-(12, 20, 94),
-(13, 20, 96),
-(14, 20, 91),
-(15, 1, 67),
-(16, 1, 72);
 
 -- --------------------------------------------------------
 
@@ -226,9 +214,7 @@ CREATE TABLE `pembayaran` (
 --
 
 INSERT INTO `pembayaran` (`id`, `siswa_nisn`, `bukti_transfer`, `status`, `created_at`) VALUES
-(8, '1122334456', 'WhatsApp_Image_2024-12-11_at_09_44_59_1ff053511.jpg', 'approved', '2024-12-18 15:38:48'),
-(9, '1122334456', 'Desain_tanpa_judul.png', 'approved', '2024-12-18 15:42:51'),
-(10, '1122334451', 'WhatsApp_Image_2024-12-11_at_09_44_58_c45307d0.jpg', 'rejected', '2024-12-19 13:28:45');
+(12, '1122334456', 'butki_pembayaran_spp.jpg', 'approved', '2024-12-23 14:23:59');
 
 -- --------------------------------------------------------
 
@@ -249,13 +235,17 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`nisn`, `nama`, `angkatan`, `kelas_id`, `password`) VALUES
-('1122334450', 'Reno', '2022', 20, ''),
-('1122334451', 'Keke', '2022', 20, 'keke123'),
-('1122334456', 'Daniel Prasetio Budiman', '2024', 20, '123456'),
-('1122334458', 'Marvel', '2021', 1, ''),
-('1122334459', 'Vazcha Tezza Lonica Raynegha', '2022', 9, ''),
-('12345671', 'Gabriel Prasetio Budiman', '2024', 20, ''),
-('1234567122', 'Eddy Budiman', '2022', 19, '');
+('0123456789', 'Joko Susanto', '2024', 23, ''),
+('1122334456', 'Daniel Prasetio Budiman', '2024', 23, '123456'),
+('1234567890', 'Andi Prasetyo', '2024', 23, ''),
+('2345678901', 'Budi Setiawan', '2024', 23, ''),
+('3456789012', 'Citra Dewi', '2024', 23, ''),
+('4567890123', 'Dani Rahman', '2024', 23, ''),
+('5678901234', 'Eka Putri', '2024', 23, ''),
+('6789012345', 'Faisal Maulana', '2024', 23, ''),
+('7890123456', 'Gina Sari', '2024', 23, ''),
+('8901234567', 'Hendra Santoso', '2024', 23, ''),
+('9012345678', 'Indah Pramesti', '2024', 23, '');
 
 --
 -- Indexes for dumped tables
@@ -326,19 +316,19 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `kelas_mata_pelajaran`
@@ -362,7 +352,7 @@ ALTER TABLE `mata_pelajaran`
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

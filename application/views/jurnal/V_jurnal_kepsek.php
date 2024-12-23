@@ -39,7 +39,7 @@
             </div>
 
             <div class="grid grid-cols-1 mt-6">
-                <form action="<?= site_url('jurnal/tambah_kelas'); ?>" method="POST" class="bg-gradient-to-r from-blue-600 to-blue-500 shadow-md rounded-lg p-6 text-center text-white transform transition-transform duration-300 hover:scale-105 hover:bg-violet-600 cursor-pointer">
+                <form action="<?= site_url('jurnal/tambah_kelas_kepsek'); ?>" method="POST" class="bg-gradient-to-r from-blue-600 to-blue-500 shadow-md rounded-lg p-6 text-center text-white transform transition-transform duration-300 hover:scale-105 hover:bg-violet-600 cursor-pointer">
                     <div class="text-xl font-semibold">Tambah Kelas</div>
                     <div class="mt-4">
                         <input type="text" name="nama_kelas" placeholder="Nama Kelas" class="p-2 rounded-md text-black w-full mb-2" required>
