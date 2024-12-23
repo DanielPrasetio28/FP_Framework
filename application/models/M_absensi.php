@@ -81,3 +81,4 @@ class M_absensi extends CI_Model {
     }
     
 }
+ 
