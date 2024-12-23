@@ -112,7 +112,7 @@
             }
 
             // Redirect kembali ke halaman jurnal
-            redirect('jurnal/V_jurnal_kepsek');
+            redirect('jurnal/V_kelas_kepsek');
         }
         
         public function tambah_mata_pelajaran($kelas_id) {

@@ -28,7 +28,7 @@
             </h1>
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-3xl font-bold text-gray-800">Daftar Mata Pelajaran</h1>
-                <a href="<?= site_url('jurnal/hapus/' . $kelas->id); ?>" 
+                <a href="<?= site_url('jurnal/hapus_kepsek/' . $kelas->id); ?>" 
                 class="bg-red-500 font-bold text-white p-3 rounded-md inline-block transform transition-transform duration-300 hover:scale-110 hover:bg-gradient-to-r from-red-500 to-pink-600"
                 onclick="return confirm('Apakah Anda yakin ingin menghapus kelas ini?');">
                     <i class="fas fa-trash mr-2"></i>Hapus Kelas

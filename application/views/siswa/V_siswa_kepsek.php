@@ -76,7 +76,7 @@
                                 <td class="py-2 px-4"><?= $s->tingkat . '-' . $s->jurusan . '-' . $s->nama_kelas; ?></td>
                                 <td class="py-2 px-4">
                                     <a href="<?= site_url('siswa/edit_kepsek/'.$s->nisn); ?>" class="text-blue-500 font-bold inline-block transform transition-transform duration-300 hover:scale-110">Edit</a> |
-                                    <a href="<?= site_url('siswa/hapus/'.$s->nisn); ?>" class="text-red-500 font-bold inline-block transform transition-transform duration-300 hover:scale-110">Hapus</a>
+                                    <a href="<?= site_url('siswa/hapus_kepsek/'.$s->nisn); ?>" class="text-red-500 font-bold inline-block transform transition-transform duration-300 hover:scale-110">Hapus</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
