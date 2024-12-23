@@ -15,8 +15,7 @@
             <ul class="space-y-4">
             <li>
                 <a href="<?= site_url('dashboard/dashboard_siswa'); ?>" 
-                class="text-blue-500 flex items-center p-3 rounded-md text-2xl font-bold ml-4">
-                <i></i>SiFoAkademik
+                class="text-blue-500 flex items-center p-3 rounded-md text-2xl font-bold ml-3"><i class="fas fa-book-reader mr-3"></i>EduManage</a></li>
                 </a>
             </li>
             <li>
