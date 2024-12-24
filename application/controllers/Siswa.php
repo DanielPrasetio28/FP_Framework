@@ -69,7 +69,7 @@ class Siswa extends CI_Controller {
     
         if ($this->form_validation->run() == FALSE) {
             $this->edit($nisn);
-        } else {
+        } else {    
             $data = [
                 'nama' => $this->input->post('nama'),
                 'angkatan' => $this->input->post('angkatan'),

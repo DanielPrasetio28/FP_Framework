@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2024 at 03:25 PM
+-- Generation Time: Dec 24, 2024 at 04:05 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -34,6 +34,22 @@ CREATE TABLE `absensi` (
   `tanggal` date NOT NULL,
   `status` enum('hadir','izin','alpha') NOT NULL DEFAULT 'alpha'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `absensi`
+--
+
+INSERT INTO `absensi` (`id`, `siswa_nisn`, `kelas_id`, `tanggal`, `status`) VALUES
+(12, '0123456789', 23, '2024-12-23', 'hadir'),
+(13, '1122334456', 23, '2024-12-23', 'hadir'),
+(14, '1234567890', 23, '2024-12-23', 'hadir'),
+(15, '2345678901', 23, '2024-12-23', 'hadir'),
+(16, '3456789012', 23, '2024-12-23', 'hadir'),
+(17, '4567890123', 23, '2024-12-23', 'hadir'),
+(18, '5678901234', 23, '2024-12-23', 'hadir'),
+(19, '6789012345', 23, '2024-12-23', 'hadir'),
+(20, '7890123456', 23, '2024-12-23', 'hadir'),
+(21, '8901234567', 23, '2024-12-23', 'hadir');
 
 -- --------------------------------------------------------
 
@@ -244,8 +260,7 @@ INSERT INTO `siswa` (`nisn`, `nama`, `angkatan`, `kelas_id`, `password`) VALUES
 ('5678901234', 'Eka Putri', '2024', 23, ''),
 ('6789012345', 'Faisal Maulana', '2024', 23, ''),
 ('7890123456', 'Gina Sari', '2024', 23, ''),
-('8901234567', 'Hendra Santoso', '2024', 23, ''),
-('9012345678', 'Indah Pramesti', '2024', 23, '');
+('8901234567', 'Hendra Santoso', '2024', 23, '');
 
 --
 -- Indexes for dumped tables
@@ -316,7 +331,7 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `admin`

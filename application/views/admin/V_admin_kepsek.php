@@ -29,7 +29,7 @@
             <!-- Search and Filter -->
             <div class="flex space-x-4 mb-6">
                 <form action="<?= site_url('admin'); ?>" method="GET" class="flex space-x-2">
-                    <input type="text" name="search" placeholder="Nama admin" class="p-2 border rounded-md" value="<?= isset($search) ? $search : ''; ?>">
+                    <input type="text" name="search" placeholder="Nama Admin" class="p-2 border rounded-md" value="<?= isset($search) ? $search : ''; ?>">
                     <button type="submit" class="bg-blue-500 text-white p-2 rounded-md inline-block transform transition-transform duration-300 hover:scale-110 hover:bg-gradient-to-r from-blue-500 to-indigo-500">
                         <i class="fas fa-search"></i>
                     </button>

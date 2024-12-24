@@ -11,7 +11,7 @@
 
     <!-- Sidebar -->
     <div class="flex" id="app">
-        <div class="bg-white text-gray-800 w-64 h-screen p-5 space-y-6 transition-all duration-300" id="sidebar">
+        <div class="bg-white text-gray-800 w-64 min-h-screen p-5 space-y-6 transition-all duration-300" id="sidebar">
             <ul class="space-y-4">
             <li>
                 <a href="<?= site_url('dashboard/dashboard_siswa'); ?>" 
